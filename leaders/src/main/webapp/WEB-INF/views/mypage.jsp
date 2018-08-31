@@ -38,7 +38,7 @@
 	.bg-dark{
 		background: #e7e7e7 !important;
 	}
-	
+	 
 	.bg-primary{
 		background: #80c340 !important;
 	}
