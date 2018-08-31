@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.leaders.mapper.memberMapper">
+ 	<insert id="insertMember" parameterType="com.leaders.dto.MemberDTO">
+ 		<![CDATA[
+ 			INSERT INTO member ( userName, userId, userPwd, userEmail, userPhone, 
+ 			userGender,joinDate) 
+ 			VALUES
+ 			( #{userName}, #{userId}, password(#{userPwd}), #{userEmail}, #{userPhone}, #{userGender}, now())
+ 		]]>
+ 	</insert>
+ 	
+ 	<select id="selectMemberId" resultType="com.leaders.dto.MemberDTO">
+ 		<![CDATA[
+ 			SELECT userId
+ 			FROM member
+ 			WHERE userId = #{userId}
+ 		]]>
+ 	</select>
+
+	<select id="selectMember" resultType="com.leaders.dto.MemberDTO">
+ 		<![CDATA[
+ 			SELECT *
+ 			FROM member
+ 			WHERE userId = #{userId} AND userPwd=password(#{userPwd})
+ 		]]>
+ 	</select>
+ 	
+ 	<insert id="insertLoginLog" parameterType="com.leaders.dto.MemberDTO">
+ 		<![CDATA[
+ 			INSERT INTO loginlog (userid,logdate) 
+ 			VALUES
+ 			(#{userid},now())
+ 		]]>
+ 	</insert>
+ 	
+ 	<select id="selectMemberinfo" resultType="com.leaders.dto.MemberDTO">
+ 		<![CDATA[
+ 			SELECT *
+ 			FROM member
+ 			WHERE userId = #{userId}
+ 		]]>
+ 	</select>
+ 	
+ 	<delete id="Deletemember" parameterType="String">
+		<![CDATA[
+		  	DELETE FROM member WHERE userId = #{userId}
+	  	]]>
+	</delete>
+	
+	<update id="updatemember" parameterType="com.leaders.dto.MemberDTO">
+       <![CDATA[
+         UPDATE member 
+         SET 
+         userName = #{userName}, userPhone = #{userPhone}, userGender = #{userGender}, userEmail = #{userEmail}
+         WHERE userId = #{userId}
+       ]]>
+    </update>
+    
+	<update id="updatememberpw" parameterType="com.leaders.dto.MemberDTO">
+       <![CDATA[
+         UPDATE member 
+         SET 
+         userPwd = password(#{userPwd})
+         WHERE userId = #{userId}
+       ]]>
+    </update>
+    
+    <select id="selectMemberpw" resultType="com.leaders.dto.MemberDTO">
+ 		<![CDATA[
+ 			SELECT userPwd
+ 			FROM member
+ 			WHERE userId = #{userId} AND userPwd=password(#{userPwd})
+ 		]]>
+ 	</select>
+    
+    
+</mapper>
+ 
