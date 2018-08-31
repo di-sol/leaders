@@ -98,9 +98,11 @@
                 </div>
             </div>
             <!-- End Bread crumb -->
+            
+            
+            
+            
           
-          
-          	<iframe width="100%" height="100%" src="http://210.110.195.78:8080/" frameborder="0" allowfullscreen>iframe 지원 불가</iframe>
 
 
             <!-- End Container fluid  -->
@@ -160,18 +162,6 @@
 	<script src="<%=cp %>/resources/js/lib/datatables/datatables-init.js"></script>
     
     <script type="text/javascript">
-  	function ajaxTest () {
-  		$.ajax({
-  			url: 'http://210.110.195.12:5000/get_pods',
-  			type:'POST',
-  			dataType: 'text',
-  			success:function(data){
-  				console.log(data);
-  			}
-  		});
-  		
-
-  	}
   
     </script>
 
