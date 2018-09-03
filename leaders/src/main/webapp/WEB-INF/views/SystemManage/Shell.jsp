@@ -34,41 +34,33 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<style type="text/css">
-	.bg-dark{
-		background: #e7e7e7 !important;
-	}
-	
-	.bg-primary{
-		background: #80c340 !important;
-	}
-	
-	.bg-pink{
-		background: #539fcc !important;
-	}
-	
-	.bg-success{
-		background: #4d6abb !important;
-	}
-	
-	.bg-danger{
-		background: #855486 !important;
-		/* background: #6c757d !important; */
-	}
-	
-	.canvas{
-		height: 100vh; 
-  		width: 100vw;
-		display: block;
-	}
-	
-	.custom-table td, .custom-table th {
-		padding: 0 5 0 5 !important;
-		font-size: smaller;
-	}
-	
-</style>
 </head>
+
+<style>
+	.tree_box { width:400px; border:1px solid #ccd3d9;margin: 30px auto;}
+	.tree_box .title { padding:5px 0 5px 19px ;background:#f8f8f9;border-bottom:1px solid #ccd3d9;}
+	.tree_box .title strong {margin-right:12px;}
+	.tree_menu {line-height:18px;}
+	.tree_menu strong {font-weight:normal;}
+	.tree_menu label input {vertical-align:-2px;}
+	.tree_menu .depth_1 a {vertical-align:bottom;text-decoration:none;}
+	.tree_menu .depth_1 strong {padding-left:19px;background:url(http://cfile26.uf.tistory.com/image/224E6B45569458082AA795) no-repeat 0px 2px;}
+	.tree_menu .depth_2 li {margin-top:-2px;background:url(http://cfile9.uf.tistory.com/image/22601F4B569457FF051E7E) no-repeat 5px 0px;}
+	.tree_menu .depth_2 li a em {display:inline-block;width:31px;height:11px;background:url(http://cfile27.uf.tistory.com/image/2265AB4B569457FD1306CB) 100% 0;font-size:0;line-height:0;vertical-align:middle;}
+	.tree_menu .depth_2 li a em.on {background-position:0 100%;}
+	.tree_menu li.last {background:none;}
+	.tree_menu li.last {background:none;}
+	.tree_menu .depth_3 {display:none;padding-left:23px;} 
+	.tree_menu .depth_3 li {margin:0;padding:3px 0 0 14px;line-height:1;background:url(http://cfile8.uf.tistory.com/image/2456D34B569457FC14828D) no-repeat 0 0;}
+	.tree_menu .depth_3 li a {display:block;}
+	.msie6 .tree_menu .depth_3 li a {display:inline-block;}
+	.tree_menu li.end {background:url(http://cfile23.uf.tistory.com/image/2272CF4B5694580418FF9C) no-repeat 0 0;}
+	.form_tree_menu .depth_1 {background:url(http://cfile9.uf.tistory.com/image/22601F4B569457FF051E7E) no-repeat 5px 5px;}
+	.form_tree_menu ul.depth_2 li {margin-left:6px;padding-left:27px;background:url(http://cfile25.uf.tistory.com/image/2757834B5694580514C5D6) no-repeat 0 5px;}
+</style>
+
+
+
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
@@ -100,14 +92,56 @@
             <!-- End Bread crumb -->
           
           <div class="row">
-          &emsp;&emsp;
-          	<div class="col-3" style="border-style:solid ;height:70%">
-          	</div>
-          	&emsp;
-          	<div class="col-7" style="border-style:solid ;height:70%" >
-          	
-          	</div>
-          </div>
+          	<div class="col-auto"></div>
+			  <div class="col-2">
+			  	<div class="row">
+				  <div class="col-8">&emsp;CLUSTER DIAGRAM</div>
+				  <div class="col"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+			  	</div>
+			  	<br>
+			  	<div class="row border" style="height:70%;background-color:white;">
+			  	
+				  	<div class="col">
+				  		<div class="tree_box">
+						    <div class="con">
+						        <ul id="tree_menu" class="tree_menu">
+						        	<ul class="depth_2" >
+					                    <li>
+					                        <a href="#"><input type="checkbox"><i class="fa fa-desktop" aria-hidden="true"></i>&nbsp;cab1</a>
+					                        <ul class="depth_3">
+					                            <li><a href="#"><input type="checkbox"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;mu01</a></li>
+					                            <li><a href="#"><input type="checkbox"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;cu01</a></li>
+					                            <li><a href="#"><input type="checkbox"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;c01b01</a></li>
+					                            <li><a href="#"><input type="checkbox"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;c01b02</a></li>
+					                            <li><a href="#"><input type="checkbox"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;c01b03</a></li>
+					                        </ul>
+					                    </li>
+					                </ul>
+						        </ul>
+						    </div>
+						</div>
+					</div>
+						
+					
+					
+			  	</div>
+			  	<br>
+			  	<div class="row">	 	
+				  <div class="col"><input type="button" class="btn btn-primary" value="Shell view"></div>
+				  <div class="col"><input type="button" class="btn btn-primary" value="Text view"></div>
+			  	</div>
+			  </div>
+			  <div class="col-8">
+			  	<div class="row">
+				  <div class="col-8"><i class="fa fa-exchange" aria-hidden="true"></i>&emsp;Click to expand / fold shell page</div>
+			  	</div>
+			  	<br>
+			  	<div class="row border" style="height:75%;background-color:black;">
+			  		
+			  	</div>
+			  </div>
+			  
+			</div>
 
             <!-- End Container fluid  -->
             <!-- footer -->
@@ -143,10 +177,6 @@
     <%-- <script src="<%=cp %>/resources/js/lib/calendar-2/semantic.ui.min.js"></script> --%>
     
     <!-- scripit init-->
-    <script src="<%=cp %>/resources/js/lib/calendar-2/prism.min.js"></script>
-    <!-- scripit init-->
-    <script src="<%=cp %>/resources/js/lib/calendar-2/pignose.calendar.min.js"></script>
-    <!-- scripit init-->
     <script src="<%=cp %>/resources/js/lib/calendar-2/pignose.init.js"></script>
 
     <!-- Chart Js include -->
@@ -166,7 +196,33 @@
 	<script src="<%=cp %>/resources/js/lib/datatables/datatables-init.js"></script>
     
     <script type="text/javascript">
-    
+    	function tree_menu() {
+    	  // $('.depth_2');
+    	  $('ul.depth_2 >li > a').click(function(e) {
+
+    	    var temp_el = $(this).next('ul');
+    	    var depth_3 = $('.depth_3');
+
+    	    // 처음에 모두 슬라이드 업 시켜준다.
+    	    depth_3.slideUp(300);
+    	    // 클릭한 순간 모두 on(-)을 제거한다.// +가 나오도록
+    	    depth_3.parent().find('em').removeClass('on');
+
+    	    if (temp_el.is(':hidden')) {
+    	      temp_el.slideDown(300);
+    	      $(this).find('em').addClass('on').html('하위폴더 열림');
+    	    } else {
+    	      temp_el.slideUp(300);
+    	      $(this).find('em').removeClass('on').html('하위폴더 닫힘');
+    	    }
+
+    	    return false;
+
+    	  });
+    	}
+    	if ($('#tree_menu').is(':visible')) {
+    	  tree_menu();
+    	}
     </script>
 
 </body>

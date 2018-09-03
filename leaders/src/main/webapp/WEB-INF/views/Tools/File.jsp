@@ -35,38 +35,9 @@
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <style type="text/css">
-	.bg-dark{
-		background: #e7e7e7 !important;
+	th {
+	  font-size : 13px;
 	}
-	
-	.bg-primary{
-		background: #80c340 !important;
-	}
-	
-	.bg-pink{
-		background: #539fcc !important;
-	}
-	
-	.bg-success{
-		background: #4d6abb !important;
-	}
-	
-	.bg-danger{
-		background: #855486 !important;
-		/* background: #6c757d !important; */
-	}
-	
-	.canvas{
-		height: 100vh; 
-  		width: 100vw;
-		display: block;
-	}
-	
-	.custom-table td, .custom-table th {
-		padding: 0 5 0 5 !important;
-		font-size: smaller;
-	}
-	
 </style>
 </head>
 <body class="fix-header fix-sidebar">
@@ -100,7 +71,43 @@
             <!-- End Bread crumb -->
             
             
-            
+            <div class="container"> 
+            	<div class="row border border-success">
+            		<div class="col-md-auto text-center" style="padding-top:10px">
+            			<a style="color:green;font-weight: bold;font-size:15px;">Current Dir&nbsp;:&nbsp;</a>
+            		</div>
+            		<div class="col-9">
+            			<input type="text" class="form-control" style="width:100%;" value="경로" readonly>	
+            		</div>
+            		<div class="col" style="padding-top:10px">
+            			<i class="fa fa-arrow-right" aria-hidden="true" style="font-size:20px;"></i>&emsp;
+            			<i class="fa fa-home" aria-hidden="true" style="font-size:20px;"></i>
+            		</div>
+            	</div>
+            </div>
+            <div class="container"> 
+            	<div class="row" style="height:70%;">
+            		<div class="col-3 border border-success">
+            		
+            		<i class="fa fa-angle-right" aria-hidden="true" style="font-size:15px;"></i>&nbsp;
+            		<i class="fa fa-folder" aria-hidden="true" style="font-size:15px;"></i>&nbsp;
+            		<a href="#" style="font-size:15px;">Desktop</a>
+            		
+            		</div>
+            		<div class="col border border-success">
+            			<table id="FileTable" class="table" style="width:100%">
+							<thead>
+					    		<tr>
+					    			<th width="50%">File Name</th>
+					    			<th width="15%">File Type</th>
+					    			<th width="15%">Size(bytes)</th>
+					    			<th width="20%">Modify Time</th>
+					    		</tr>
+				    		</thead>
+						</table>
+            		</div>
+            	</div>
+            </div>
             
           
 
@@ -162,7 +169,11 @@
 	<script src="<%=cp %>/resources/js/lib/datatables/datatables-init.js"></script>
     
     <script type="text/javascript">
-  
+    var table = $('#FileTable').DataTable({
+		"bFilter" : false,
+		"bPaginate" : false, 
+		"bInfo" : false
+    });
     </script>
 
 </body>

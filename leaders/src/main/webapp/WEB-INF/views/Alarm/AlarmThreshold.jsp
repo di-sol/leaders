@@ -34,40 +34,6 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<style type="text/css">
-	.bg-dark{
-		background: #e7e7e7 !important;
-	}
-	
-	.bg-primary{
-		background: #80c340 !important;
-	}
-	
-	.bg-pink{
-		background: #539fcc !important;
-	}
-	
-	.bg-success{
-		background: #4d6abb !important;
-	}
-	
-	.bg-danger{
-		background: #855486 !important;
-		/* background: #6c757d !important; */
-	}
-	
-	.canvas{
-		height: 100vh; 
-  		width: 100vw;
-		display: block;
-	}
-	
-	.custom-table td, .custom-table th {
-		padding: 0 5 0 5 !important;
-		font-size: smaller;
-	}
-	
-</style>
 </head>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -187,7 +153,7 @@
     <script type="text/javascript">
     
     var table = $('#AlarmThresholdTable').DataTable({
-		'order': [1, 'desc']
+    	"bInfo" : false
     });
     
     </script>

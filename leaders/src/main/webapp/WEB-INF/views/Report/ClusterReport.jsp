@@ -35,122 +35,91 @@
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <style type="text/css">
-	.bg-dark{
-		background: #e7e7e7 !important;
-	}
-	
-	.bg-primary{
-		background: #80c340 !important;
-	}
-	
-	.bg-pink{
-		background: #539fcc !important;
-	}
-	
-	.bg-success{
-		background: #4d6abb !important;
-	}
-	
-	.bg-danger{
-		background: #855486 !important;
-		/* background: #6c757d !important; */
-	}
-	
-	.canvas{
-		height: 100vh; 
-  		width: 100vw;
-		display: block;
-	}
-	
-	.custom-table td, .custom-table th {
-		padding: 0 5 0 5 !important;
-		font-size: smaller;
-	}
 	.funkyradio div {
-  clear: both;
-  overflow: hidden;
-}
-
-.funkyradio label {
-  width: 100%;
-  border-radius: 3px;
-  border: 1px solid #D1D3D4;
-  font-weight: normal;
-}
-
-.funkyradio input[type="radio"]:empty,
-.funkyradio input[type="checkbox"]:empty {
-  display: none;
-}
-
-.funkyradio input[type="radio"]:empty ~ label,
-.funkyradio input[type="checkbox"]:empty ~ label {
-  position: relative;
-  line-height: 2.5em;
-  text-indent: 3.25em;
-  margin-top: 2em;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.funkyradio input[type="radio"]:empty ~ label:before,
-.funkyradio input[type="checkbox"]:empty ~ label:before {
-  position: absolute;
-  display: block;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  content: '';
-  width: 2.5em;
-  background: #D1D3D4;
-  border-radius: 3px 0 0 3px;
-}
-
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
-  color: #888;
-}
-
-.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
-.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #C2C2C2;
-}
-
-.funkyradio input[type="radio"]:checked ~ label,
-.funkyradio input[type="checkbox"]:checked ~ label {
-  color: #777;
-}
-
-.funkyradio input[type="radio"]:checked ~ label:before,
-.funkyradio input[type="checkbox"]:checked ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #333;
-  background-color: #ccc;
-}
-
-.funkyradio input[type="radio"]:focus ~ label:before,
-.funkyradio input[type="checkbox"]:focus ~ label:before {
-  box-shadow: 0 0 0 3px #999;
-}
-
-
-.funkyradio-warning input[type="radio"]:checked ~ label:before,
-.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
-  color: #fff;
-  background-color: #f0ad4e;
-}
-label{
-	font-size:12px;
-}
-th {
-	  font-size : 14px;
-	}	
+	  clear: both;
+	  overflow: hidden;
+	}
+	
+	.funkyradio label {
+	  width: 100%;
+	  border-radius: 3px;
+	  border: 1px solid #D1D3D4;
+	  font-weight: normal;
+	}
+	
+	.funkyradio input[type="radio"]:empty,
+	.funkyradio input[type="checkbox"]:empty {
+	  display: none;
+	}
+	
+	.funkyradio input[type="radio"]:empty ~ label,
+	.funkyradio input[type="checkbox"]:empty ~ label {
+	  position: relative;
+	  line-height: 2.5em;
+	  text-indent: 3.25em;
+	  margin-top: 2em;
+	  cursor: pointer;
+	  -webkit-user-select: none;
+	     -moz-user-select: none;
+	      -ms-user-select: none;
+	          user-select: none;
+	}
+	
+	.funkyradio input[type="radio"]:empty ~ label:before,
+	.funkyradio input[type="checkbox"]:empty ~ label:before {
+	  position: absolute;
+	  display: block;
+	  top: 0;
+	  bottom: 0;
+	  left: 0;
+	  content: '';
+	  width: 2.5em;
+	  background: #D1D3D4;
+	  border-radius: 3px 0 0 3px;
+	}
+	
+	.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+	.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+	  color: #888;
+	}
+	
+	.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+	.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+	  content: '\2714';
+	  text-indent: .9em;
+	  color: #C2C2C2;
+	}
+	
+	.funkyradio input[type="radio"]:checked ~ label,
+	.funkyradio input[type="checkbox"]:checked ~ label {
+	  color: #777;
+	}
+	
+	.funkyradio input[type="radio"]:checked ~ label:before,
+	.funkyradio input[type="checkbox"]:checked ~ label:before {
+	  content: '\2714';
+	  text-indent: .9em;
+	  color: #333;
+	  background-color: #ccc;
+	}
+	
+	.funkyradio input[type="radio"]:focus ~ label:before,
+	.funkyradio input[type="checkbox"]:focus ~ label:before {
+	  box-shadow: 0 0 0 3px #999;
+	}
+	
+	
+	.funkyradio-warning input[type="radio"]:checked ~ label:before,
+	.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+	  color: #fff;
+	  background-color: #f0ad4e;
+	}
+	label{
+		font-size:12px;
+	}
+	th {
+		  font-size : 14px;
+		}	
 </style>
 </head>
 <body class="fix-header fix-sidebar">
@@ -191,7 +160,7 @@ th {
 					<div class="col">
 					    <div class="funkyradio">
 					        <div class="funkyradio-warning">
-					            <input type="checkbox" name="checkbox" id="checkbox1" checked/>
+					            <input type="radio" name="radio" id="checkbox1" checked/>
 					            <label for="checkbox1">Cluster Resource</label>
 					        </div>
 					    </div>
@@ -199,7 +168,7 @@ th {
 					<div class="col">
 					    <div class="funkyradio">
 					        <div class="funkyradio-warning">
-					            <input type="checkbox" name="checkbox" id="checkbox2" />
+					            <input type="radio" name="radio" id="checkbox2" />
 					            <label for="checkbox2">Node Resource</label>
 					        </div>
 					    </div>
@@ -207,7 +176,7 @@ th {
 					<div class="col">
 					    <div class="funkyradio">
 					        <div class="funkyradio-warning">
-					            <input type="checkbox" name="checkbox" id="checkbox3" />
+					            <input type="radio" name="radio" id="checkbox3" />
 					            <label for="checkbox3">Job Scale</label>
 					        </div>
 					    </div>
@@ -216,7 +185,7 @@ th {
 					<div class="col">
 					    <div class="funkyradio">
 					        <div class="funkyradio-warning">
-					            <input type="checkbox" name="checkbox" id="checkbox4" />
+					            <input type="radio" name="radio" id="checkbox4" />
 					            <label for="checkbox4">Job Number</label>
 					        </div>
 					    </div>
@@ -224,7 +193,7 @@ th {
 					<div class="col">
 					    <div class="funkyradio">
 					        <div class="funkyradio-warning">
-					            <input type="checkbox" name="checkbox" id="checkbox5" />
+					            <input type="radio" name="radio" id="checkbox5" />
 					            <label for="checkbox5">Job/Queue</label>
 					        </div>
 					    </div>
@@ -237,7 +206,7 @@ th {
 					<div class="col-2">
 					    <div class="funkyradio">
 					        <div class="funkyradio-warning">
-					            <input type="checkbox" name="checkbox" id="checkbox6" checked/>
+					            <input type="radio" name="radio2" id="checkbox6" checked/>
 					            <label for="checkbox6">Cluster Resource</label>
 					        </div>
 					    </div>
@@ -245,7 +214,7 @@ th {
 					<div class="col-2">
 					    <div class="funkyradio">
 					        <div class="funkyradio-warning">
-					            <input type="checkbox" name="checkbox" id="checkbox7" />
+					            <input type="radio" name="radio2" id="checkbox7" />
 					            <label for="checkbox7">Node Resource</label>
 					        </div>
 					    </div>
@@ -253,7 +222,7 @@ th {
 					<div class="col-2">
 					    <div class="funkyradio">
 					        <div class="funkyradio-warning">
-					            <input type="checkbox" name="checkbox" id="checkbox8" />
+					            <input type="radio" name="radio2" id="checkbox8" />
 					            <label for="checkbox8">Job Scale</label>
 					        </div>
 					    </div>
@@ -374,7 +343,10 @@ th {
     <script type="text/javascript">
     
     var table = $('#SubmitTrainTasksTable').DataTable({
-		'order': [1, 'desc']
+		'order': [0, 'desc'],
+		"bInfo" : false,
+		"bFilter" : false,
+		"bPaginate" : false,
     });
     
     $(function(){ 

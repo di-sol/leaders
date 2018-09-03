@@ -35,37 +35,6 @@
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <style type="text/css">
-	.bg-dark{
-		background: #e7e7e7 !important;
-	}
-	
-	.bg-primary{
-		background: #80c340 !important;
-	}
-	
-	.bg-pink{
-		background: #539fcc !important;
-	}
-	
-	.bg-success{
-		background: #4d6abb !important;
-	}
-	
-	.bg-danger{
-		background: #855486 !important;
-		/* background: #6c757d !important; */
-	}
-	
-	.canvas{
-		height: 100vh; 
-  		width: 100vw;
-		display: block;
-	}
-	
-	.custom-table td, .custom-table th {
-		padding: 0 5 0 5 !important;
-		font-size: smaller;
-	}
 	ul.tabs{
 	  margin: 0px;
 	  padding: 0px;
@@ -218,7 +187,7 @@
 					<p style="font-size:20px">4</p>Task</li>
 				  </ul>
 				   <div class="progress">
-					  <div class="progress-bar progress-bar-striped bg-success" id="bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					  <div class="progress-bar progress-bar-striped bg-primary" id="bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
 				  <hr>
 				  

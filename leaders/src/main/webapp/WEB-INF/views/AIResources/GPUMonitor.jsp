@@ -36,44 +36,6 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<style type="text/css">
-	.bg-dark{
-		background: #e7e7e7 !important;
-	}
-	
-	.bg-primary{
-		background: #80c340 !important;
-	}
-	
-	.bg-pink{
-		background: #539fcc !important;
-	}
-	
-	.bg-success{
-		background: #4d6abb !important;
-	}
-	
-	.bg-danger{
-		background: #855486 !important;
-		/* background: #6c757d !important; */
-	}
-	
-	.canvas{
-		height: 100vh; 
-  		width: 100vw;
-		display: block;
-	}
-	
-	.custom-table td, .custom-table th {
-		padding: 0 5 0 5 !important;
-		font-size: smaller;
-	}
-	.canvas{
-		height: 50vh; 
-  		width: 50vw;
-		display: block;
-	}
-</style>
 </head>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -123,7 +85,7 @@
                  <div class="col">
                  	 <div class="row text-center">
                  	 	 <a href="<%=cp%>/AIResources/GPUMonitorinfo">
-                        <div class="card bg-pink p-15">
+                        <div class="card bg-primary p-15">
                             <div class="media widget-ten">
                                 <div class="media-body">
                                     <h2 class="color-white">aicu01</h2>
@@ -136,7 +98,7 @@
                         </div>&nbsp;
                         
                         <a href="#">
-                        <div class="card bg-pink p-15">
+                        <div class="card bg-primary p-15">
                             <div class="media widget-ten">
                                 <div class="media-body">
                                     <h2 class="color-white">aicu01</h2>
@@ -149,7 +111,7 @@
                         </a>&nbsp;
                         
                         <a href="#">
-                        <div class="card bg-pink p-15">
+                        <div class="card bg-primary p-15">
                             <div class="media widget-ten">
                                 <div class="media-body">
                                     <h2 class="color-white">aicu01</h2>
@@ -162,7 +124,7 @@
                         </a>&nbsp;
                         
                         <a href="#">
-                        <div class="card bg-pink p-15">
+                        <div class="card bg-primary p-15">
                             <div class="media widget-ten">
                                 <div class="media-body">
                                     <h2 class="color-white">aicu01</h2>

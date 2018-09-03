@@ -34,40 +34,7 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<style type="text/css">
-	.bg-dark{
-		background: #e7e7e7 !important;
-	}
-	
-	.bg-primary{
-		background: #80c340 !important;
-	}
-	
-	.bg-pink{
-		background: #539fcc !important;
-	}
-	
-	.bg-success{
-		background: #4d6abb !important;
-	}
-	
-	.bg-danger{
-		background: #855486 !important;
-		/* background: #6c757d !important; */
-	}
-	
-	.canvas{
-		height: 100vh; 
-  		width: 100vw;
-		display: block;
-	}
-	
-	.custom-table td, .custom-table th {
-		padding: 0 5 0 5 !important;
-		font-size: smaller;
-	}
-	
-</style>
+
 </head>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -98,6 +65,35 @@
                 </div>
             </div>
             <!-- End Bread crumb -->
+            
+            
+            <div class="container">
+            	<div class="row">
+            		<div class="col-md-auto text-right" style="padding-top:10px">
+            			<a style="color:green;font-weight: bold;font-size:15px;">Import license&nbsp;:&nbsp;</a>
+            		</div>
+            		<div class="col-5">
+            			<input type="text" class="form-control" style="width:100%;">	
+            		</div>
+            		<div class="col-1 text-left" style="padding-top:10px">
+            			<i class="fa fa-folder-open" aria-hidden="true"></i>
+            		</div>
+            	</div>
+	            <div class="row">
+            		<div class="col">
+	            	<table id="ModuleTable" class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%">
+						<thead class="table-success">
+				    		<tr>
+				    			<th width="25%">Model</th>
+				    			<th width="25%">Version</th>
+				    			<th width="25%">Install Date</th>
+				    			<th width="25%">Expiration Date</th>
+				    		</tr>
+			    		</thead>
+					</table>
+					</div>
+				</div>
+				</div>
           
 
             <!-- End Container fluid  -->
@@ -157,6 +153,11 @@
 	<script src="<%=cp %>/resources/js/lib/datatables/datatables-init.js"></script>
     
     <script type="text/javascript">
+    
+    var table = $('#ModuleTable').DataTable({
+		'order': [0, 'desc'],
+		"bInfo" : false,
+    });
     
     </script>
 
