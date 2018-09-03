@@ -38,7 +38,7 @@
                     </a>
                 </div>
             </nav>
-        </div>
+        </div> 
     <!-- Main wrapper  -->
     <div id="main-wrapper">
     
