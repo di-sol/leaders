@@ -194,12 +194,37 @@
        	}
    		function deletemember(){
     		 if(confirm("관련된 모든 정보가 삭제됩니다.\n탈퇴하시겠습니까?") == true){
-    			 
+    			/* 
     			 //namespace 삭제 시 관련된 pod 같이 삭제..
-    			 
-    			 
-    			 
-    			 
+    			 $.ajax({
+			    	url:'http://210.110.195.12:5000/get_pods',
+					type:'POST',
+					dataType:'json',
+					async:false,
+					data:{"namespace": "${userId}"},
+					success:function(data){
+						for (var i=0; i<data.items.length; i++) {
+							var name = data.items[i].metadata.name;
+							console.log(i+"번째 : "+data.items[i].metadata.name);
+			
+							$.ajax({
+			   					url: 'http://210.110.195.12:5000/delete_pod',
+			   					type:'POST',
+			   					dataType:'json',
+			   					async:false,
+			   					data: {
+			   						"pod_name":data.items[i].metadata.name,
+			   						"namespace":"${userId}"
+			   					},
+			   					success:function(data){
+			   						
+			   					}
+			   		    	});
+							
+						}
+					}
+				});
+    			  */
     			 //delete_namespace(namespace)
     			 $.ajax({
     					url:'http://210.110.195.12:5000/delete_namespace',
@@ -210,6 +235,7 @@
     						console.log(data);
     					},
     				});
+    			 
 				 $.ajax({
 						url:'<%=cp%>/deletemember',
 						type:'POST',

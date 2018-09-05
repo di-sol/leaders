@@ -262,7 +262,7 @@ checkbox -->.funkyradio div {
 						<div class="row">
 							<div class="col-5">
 								<label><span style="color: red">*</span>Pod_Name</label> <input
-									class="form-control mr-sm-2" type="text" name="podname" onkeydown="onkeydown_event();">
+									class="form-control mr-sm-2" type="text" name="podname">
 							</div>
 						</div>
 
@@ -503,9 +503,6 @@ checkbox -->.funkyradio div {
 		}
 
 		function check() {
-			var blankRegx = /[\s]/g; //공백 체크 정규식
-			var specialRegx =/['~!@#$%^&*[\\\'\";:\/?']/gi; //특수 문자 체크 정규식
-			
 			if ($("select[name='image']").val() == null
 					|| $("select[name='image']").val() == "선택") {
 				alert("image를 선택해주세요.");
@@ -518,41 +515,82 @@ checkbox -->.funkyradio div {
 				$("input[name='podname']").focus();
 				return false;
 			}
-		/* 	
-			var podname =  $('input[name="podname"]');
+		 	
+			var podname =  $('input[name="podname"]').val();
 			
+			//공백체크
 			if(podname.search(/\s/) != -1) {
+				alert("Pod_Name에 공백은 포함될 수 없습니다.");
 				return true; 
-			}else{ 
-				return false; 
 			}
-			
-			var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi; 
-			
-			if(special_pattern.test(podname) != -1) { 
+			//특수문자체크
+			if(podname.search(/[~!@\#$%<>^&*\()\=+_\’]/) != -1) {
+				alert("Pod_Name에 '-'를 제외한 특수문자는 포함될 수 없습니다.");
 				return true; 
-			}else{ 
-				return false; 
+			}	
+			//공백체크예외 : -허용
+			if(podname.substr(podname.length-1)=="-"){
+				alert("Pod_Name의 '-'는 마지막에 위치할 수 없습니다.");
+				return true; 
 			}
-			 */
+			//한글체크
+			if(podname.search(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/) != -1) {
+				alert("Pod_Name에 한글은 입력될 수 없습니다.");
+				return true; 
+			}	
 			//create_pod(pod_name, namespace, gpu_num)
 			var userid = "${userid}";
+			
+			// 정영현
+	         // ajax로 get_all_pods 로 이름 중복 체크
+	         returnTrue = false;
+	         $.ajax({
+	            url : 'http://210.110.195.12:5000/get_pods',
+	            type : 'POST',
+	            dataType : 'json',
+	            data : {"namespace":userid},
+	            async : false, /* 동기화 처리 해야 된다. */ 
+	            success : function(data) {
+	               console.log(data);
+	               
+	               for (var i=0; i<data.items.length; i++) {
+	                  var name = data.items[i].metadata.name;
+	                  if ($("input[name='podname']").val() == name) {
+	                     swal("namespace 안의 Pod 이름이 중복입니다.","","error");
+	                     returnTrue = true;
+	                     break;
+	                  }
+	               }
 
-			$.ajax({
-				url : 'http://210.110.195.12:5000/create_pod',
-				type : 'POST',
-				dataType : 'json',
-				data : {
-					"pod_name" : $("input[name='podname']").val(),
-					"namespace" : userid,
-					"gpu_num" : $("input[name='gpunum']:checked").val()
-				},
-				success : function(data) {
-					alert("Submit");
-					location.href = "<%=cp %>/FeatureMonitor/teyeMonitor";
-				},
-			});
+	            }
+	         });
+	         
+	         if (returnTrue) { 
+	            return;
+	         }
 
+	         $.ajax({
+	            url : 'http://210.110.195.12:5000/create_pod',
+	            type : 'POST',
+	            dataType : 'json',
+	            data : {
+	               "pod_name" : $("input[name='podname']").val(),
+	               "namespace" : userid,
+	               "gpu_num" : $("input[name='gpunum']:checked").val()
+	            },
+	            success : function(data) {
+	               alert("Submit");
+	               location.href = "<%=cp %>/FeatureMonitor/teyeMonitor";
+	               
+	               // 정영현 
+	               // error function 추가 이름 중복 예외 처리, 이건 그냥 혹시나 모르니깐 오류 처리로 남겨두고, 이름 중복은 사전에 체크 해줄것, 이름 중복 말고 다른이유로 에러 날수도 있으니깐
+	            },error:function(json){
+	               console.log(json.statusText == "error");
+	               if (json.statusText == "error") {
+	                  swal("생성 실패 했습니다.","","error");
+	               }
+	            }
+	         });
 		}
 	</script>
 
