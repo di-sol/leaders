@@ -235,7 +235,7 @@
 								<li><a href="<%=cp%>/SystemManage/Group"><i class="fa fa-users"></i><span class="text">&ensp;Group</span></a></li>
 
 								<li><a href="<%=cp%>/SystemManage/Queue"><i class="fa fa-list-ol"></i><span class="text">&ensp;Queue</span></a></li>
-
+								
 								</c:if>
 
 								<li><a href="<%=cp%>/SystemManage/Shell"><i class="fa fa-terminal"></i><span class="text">&ensp;Shell</span></a></li>

@@ -194,13 +194,29 @@
        	}
    		function deletemember(){
     		 if(confirm("관련된 모든 정보가 삭제됩니다.\n탈퇴하시겠습니까?") == true){
+    			 
+    			 //namespace 삭제 시 관련된 pod 같이 삭제..
+    			 
+    			 
+    			 
+    			 
+    			 //delete_namespace(namespace)
+    			 $.ajax({
+    					url:'http://210.110.195.12:5000/delete_namespace',
+    					type:'POST',
+    					dataType:'json',
+    					data:{"namespace": "${userId}"},	
+    					success:function(data){
+    						console.log(data);
+    					},
+    				});
 				 $.ajax({
-						url:'<%=cp%>/modifypw',
+						url:'<%=cp%>/deletemember',
 						type:'POST',
 						dataType:'text',
 						data:{"userId":"${userId}"},
 						success:function(data){
-							alert("변경되었습니다.");
+							alert("성공적으로 탈퇴되었습니다.");
 							location.href = "<%=cp %>/";
 			   			}
 					});

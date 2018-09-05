@@ -215,11 +215,15 @@ public class HomeController {
 		
 		return "/AIResources/GPUservers";
 	}
+	
 	@RequestMapping(value = "/AIApplications/SubmitTrainTasks", method = RequestMethod.GET)
-	public String SubmitTrainTasks(Locale locale, Model model) throws Exception {
+	public String SubmitTrainTasks(Locale locale, Model model,HttpSession session) throws Exception {
+		String userid = (String)session.getAttribute("userid");
+		model.addAttribute("userid", userid);
 		
 		return "/AIApplications/SubmitTrainTasks";
 	}
+	
 	@RequestMapping(value = "/AIApplications/SourcesApply", method = RequestMethod.GET)
 	public String SourcesApply(Locale locale, Model model) throws Exception {
 		
@@ -242,6 +246,9 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/FeatureMonitor/teyeMonitor", method = RequestMethod.GET)
 	public String teyeMonitor(Locale locale, Model model) throws Exception {
+		
+		
+		
 		
 		return "/FeatureMonitor/teyeMonitor";
 	}

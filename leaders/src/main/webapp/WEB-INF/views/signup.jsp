@@ -231,77 +231,89 @@
 	}
 	
 	function inputcheck(){
-		// 번호 합치기 (\t tab 으로 구분함)
-		userPhone = $("input[name='userPhone1']").val() + "\t" + $("input[name='userPhone2']").val() + "\t" + $("input[name='userPhone3']").val();
-		// 합쳐진 번호를 input hidden에 대입(DB로 넘기기 위함)
-		$("input[name='userPhone']").val(userPhone);
-
-		if($("input[name='userName']").val() == null || $("input[name='userName']").val() == ""){
-			alert("이름은 필수 입력 사항입니다.");
-			$("input[name='userName']").focus();
-			return false;
-		}
-		if($("input[name='userId']").val() == null || $("input[name='userId']").val() == ""){
-			alert("사용하실 ID를 입력하세요");
-			$("input[name='userId']").focus();
-			return false;
-		}
-		if (!isValidUserPwd) {
-			alert("비밀번호가 보안이 취약합니다. 8자 이상으로 해주세요");
-			$("input[name='userPwd']").focus();
-			$("input[name='userPwd']").val("");
-			$("#userPwdLabel").text("");
-			$("input[name='pwdAgain']").val(""); 
-			$("#pwdAgainLabel").text(""); 
-			return false;
-		}
-		if (!isValidPwdAgain) {
-			alert("비밀번호가 일치하지 않습니다.");
-			$("input[name='pwdAgain']").focus();
-			$("input[name='pwdAgain']").val("");
-			$("#pwdAgainLabel").text("");
-			return false;
-		}
-		if($("input[name='userEmail']").val() == null || $("input[name='userEmail']").val() == ""){
-			alert("이메일을 입력하세요.");
-			$("input[name='userEmail']").focus();
-			return false;
-		}
-		if(check_email($("input[name='userEmail']").val())!=true){
-			alert("올바른 email 형식이 아닙니다.");
-			$("input[name='userEmail']").focus();
-			return false;
-		}
-		
-		if (!isValidUserId) {
-			alert("아이디 중복체크를 확인 해주세요.");
-			return false;
-		}
-		
-		if($("input[name='userPhone1']").val() == null || $("input[name='userPhone1']").val() == ""){
-			alert("연락처를 입력해주세요.");
-			$("input[name='userPhone1']").focus();
-			return false;
-		}
-		if($("input[name='userPhone2']").val() == null || $("input[name='userPhone2']").val() == ""){
-			alert("연락처를 입력해주세요.");
-			$("input[name='userPhone2']").focus();
-			return false;
-		}
-		if($("input[name='userPhone3']").val() == null || $("input[name='userPhone3']").val() == ""){
-			alert("연락처를 입력해주세요.");
-			$("input[name='userPhone3']").focus();
-			return false;
-		}
-		if (!isValidSelectGender) {
-			alert("성별을 선택해 주세요");
-			return false;
-		}
-		if (!isValidSelectTerm) {
-			alert("약관 동의를 해주세요");
-			return false;
-		}
-		if (!confirm("등록 하시겠습니까?\n*Email은 비밀번호 찾기에 이용됩니다.\n사용하시는 메일 주소를 입력 바랍니다.")){
+		if (confirm("입력하신 정보로 회원가입 하시겠습니까?") == true){
+			userPhone = $("input[name='userPhone1']").val() + "\t" + $("input[name='userPhone2']").val() + "\t" + $("input[name='userPhone3']").val();
+			$("input[name='userPhone']").val(userPhone);
+	
+			if($("input[name='userName']").val() == null || $("input[name='userName']").val() == ""){
+				alert("이름은 필수 입력 사항입니다.");
+				$("input[name='userName']").focus();
+				return false;
+			}
+			if($("input[name='userId']").val() == null || $("input[name='userId']").val() == ""){
+				alert("사용하실 ID를 입력하세요");
+				$("input[name='userId']").focus();
+				return false;
+			}
+			if (!isValidUserPwd) {
+				alert("비밀번호가 보안이 취약합니다. 8자 이상으로 해주세요");
+				$("input[name='userPwd']").focus();
+				$("input[name='userPwd']").val("");
+				$("#userPwdLabel").text("");
+				$("input[name='pwdAgain']").val(""); 
+				$("#pwdAgainLabel").text(""); 
+				return false;
+			}
+			if (!isValidPwdAgain) {
+				alert("비밀번호가 일치하지 않습니다.");
+				$("input[name='pwdAgain']").focus();
+				$("input[name='pwdAgain']").val("");
+				$("#pwdAgainLabel").text("");
+				return false;
+			}
+			if($("input[name='userEmail']").val() == null || $("input[name='userEmail']").val() == ""){
+				alert("이메일을 입력하세요.");
+				$("input[name='userEmail']").focus();
+				return false;
+			}
+			if(check_email($("input[name='userEmail']").val())!=true){
+				alert("올바른 email 형식이 아닙니다.");
+				$("input[name='userEmail']").focus();
+				return false;
+			}
+			
+			if (!isValidUserId) {
+				alert("아이디 중복체크를 확인 해주세요.");
+				return false;
+			}
+			
+			if($("input[name='userPhone1']").val() == null || $("input[name='userPhone1']").val() == ""){
+				alert("연락처를 입력해주세요.");
+				$("input[name='userPhone1']").focus();
+				return false;
+			}
+			if($("input[name='userPhone2']").val() == null || $("input[name='userPhone2']").val() == ""){
+				alert("연락처를 입력해주세요.");
+				$("input[name='userPhone2']").focus();
+				return false;
+			}
+			if($("input[name='userPhone3']").val() == null || $("input[name='userPhone3']").val() == ""){
+				alert("연락처를 입력해주세요.");
+				$("input[name='userPhone3']").focus();
+				return false;
+			}
+			if (!isValidSelectGender) {
+				alert("성별을 선택해 주세요");
+				return false;
+			}
+			if (!isValidSelectTerm) {
+				alert("약관 동의를 해주세요");
+				return false;
+			}
+			if (!confirm("등록 하시겠습니까?\n*Email은 비밀번호 찾기에 이용됩니다.\n사용하시는 메일 주소를 입력 바랍니다.")){
+				return false;
+			}
+			//create_namespace(namespace)
+			$.ajax({
+				url:'http://210.110.195.12:5000/create_namespace',
+				type:'POST',
+				dataType:'json',
+				data:{"namespace":$("input[name='userId']").val()},	
+				success:function(data){
+					console.log(data);
+					},
+			});	
+		}else{
 			return false;
 		}
 	}

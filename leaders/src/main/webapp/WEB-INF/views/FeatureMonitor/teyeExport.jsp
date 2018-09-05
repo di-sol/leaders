@@ -145,7 +145,6 @@
 	<script src="<%=cp %>/resources/js/lib/datatables/datatables-init.js"></script>
     
     <script type="text/javascript">
-    
     var table = $('#teyeExprotTable').DataTable({
     	"bInfo" : false
     });

@@ -34,6 +34,31 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+	
+	<style type="text/css">
+	
+		.monitoring-card {
+			margin-left:10px;
+			width:150px;
+			height:150px;
+			overflow:hidden;
+			cursor:pointer;
+		}
+		
+		.container_name_in_card {
+			margin-bottom: 5px !important;
+			max-height: 30px;
+			max-width: 120px;
+			overflow: hidden;
+		} 
+		
+		.progress {
+			margin:5 0 5 0;
+		}
+		
+	</style>
+	
+	
 </head>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -65,168 +90,15 @@
             </div>
             <!-- End Bread crumb -->
             
-            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			  <div class="modal-dialog modal-dialog-centered" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalCenterTitle">mu01</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="modalclose()">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        cpu_user:0%<br>
-			        cpu_sys:0%<br>
-			        cpu_idle:0%<br>
-			        cpu_iowait:0%<br>
-			        mem_used:0(MB)<br>
-			        mem_free:0(MB)<br>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-
-
             <div class="container">
   				<div class="row text-center">
-                 <div class="col">
-                 	 <div class="row text-center">
-                 	 	 <a data-toggle="modal" data-target="#modal">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">mu01</h2>
-                                    <p class="m-b-0">ID : GPU_0</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </a>
-                        </div>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">cu01</h2>
-                                    <p class="m-b-0">ID : GPU_1</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">c01b01</h2>
-                                    <p class="m-b-0">ID : GPU_2</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">c01b02</h2>
-                                    <p class="m-b-0">ID : GPU_3</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">c01b03</h2>
-                                    <p class="m-b-0">ID : GPU_4</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">c01b04</h2>
-                                    <p class="m-b-0">ID : GPU_5</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">c01b05</h2>
-                                    <p class="m-b-0">ID : GPU_6</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">c01b06</h2>
-                                    <p class="m-b-0">ID : GPU_7</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">c01b07</h2>
-                                    <p class="m-b-0">ID : GPU_8</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                        <a href="#">
-                        <div class="card bg-success p-15">
-                            <div class="media widget-ten">
-                                <div class="media-body">
-                                    <h2 class="color-white">c01b08</h2>
-                                    <p class="m-b-0">ID : GPU_9</p>
-                                    <p class="m-b-0">Utilization : 0%</p>
-                                    <p class="m-b-0">mem : 0%</p>
-                                </div>
-                            </div>
-                        </div>
-                        </a>&nbsp;
-                        
-                    </div>
-                 </div>
-              </div>
-          
-          
-          
+         			<div class="col">
+         				<div class="row text-center" id="monitoring-card-icons">
+							<!-- monitoring icons 넣기 -->
+	                	</div>
+					</div>
+				</div>
+			</div>
 
             <!-- End Container fluid  -->
             <!-- footer -->
@@ -235,6 +107,41 @@
         </div>
         <!-- End Page wrapper  -->
     </div>
+    
+    <!-- detail modal -->
+	<div class="modal fade" id="monitor_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document" style="min-width:700px;">
+			<div class="modal-content">
+				<div class="modal-header">
+			   		<h3 class="modal-title" id="exampleModalCenterTitle"><label id="modal_name"></label></h3>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="modalclose()" style="padding:0;">
+			          	<span aria-hidden="true"><i class="fa fa-times fa-lg" aria-hidden="true"></i></span>
+			        </button>
+				</div>
+				<div class="modal-body" style="display:inline-flex;">
+					<div>
+						<div>cpu : <label id="modal_requests_cpu"></label> m</div>
+						<div>memory : <label id="modal_requests_memory"></label> Mi</div>
+						<div>namespace : <label id="modal_namespace"></label></div>
+						<div>creation_timestamp : <label id="modal_creation_timestamp"></label></div>
+					</div>
+                    <div class="col-sm">
+                    	<label>USAGE(%)</label>
+                       	<canvas id="myBarChart"></canvas>
+                    </div>
+				</div>
+				<div class="modal-footer">
+			        <button type="button" class="close" onclick="delete_pod();" style="padding:0;">
+			          	<span aria-hidden="true"><i class="fa fa-trash"> Delete</i></span>
+			        </button>&nbsp;&nbsp;&nbsp;&nbsp;
+			        <button type="button" class="close" onclick="modalclose()" style="padding:0;">
+			          	<span aria-hidden="true"><i class="fa fa-times"> Close</i></span>
+			        </button>			        
+				</div>
+			</div>
+		</div>
+	</div>
+    
     <!-- End Wrapper -->
     <!-- All Jquery -->
     <script src="<%=cp %>/resources/js/lib/jquery/jquery.min.js"></script>
@@ -285,9 +192,270 @@
 	<script src="<%=cp %>/resources/js/lib/datatables/datatables-init.js"></script>
     
     <script type="text/javascript">
-    function modalclose(){
-    	location.reload();
+ 	// detail 모달 만들기 위해서, 전역변수로 
+	var detailArray = [];
+ 
+    $(document).ready(function(){
+    	
+    	var sendUrl = "";
+    	console.log('${userid}');
+    	console.log('${isadmin}');
+
+    	if ('${isadmin}' == 1) { // admin 일때
+    		sendUrl = 'http://210.110.195.12:5000/get_all_pods';
+    		inputdata = {};
+    	} else { // user 일때 
+    		sendUrl = 'http://210.110.195.12:5000/get_pods';
+    		inputdata = {"namespace":'${userid}'};
+    	}
+    	
+    	$.ajax({
+			url: sendUrl,
+			type:'POST',
+			dataType:'json',
+			async:false,
+			data:inputdata,
+			success:function(data){
+				// console.log(data);
+				// console.log(JSON.stringify(data));
+				
+				console.log(data.items);
+				console.log(data.items.length);
+
+				for (var i=0; i<data.items.length; i++) {
+					console.log("============================================");
+					console.log("i 번째 : " + i);
+					
+					// 시간은 보기 좋게 변경 해줄 것
+					var time = new Date(data.items[i].metadata.creation_timestamp);
+					console.log("trans time : " + time.toLocaleString());
+					var creation_timestamp = time.toLocaleString();
+					
+					var name = data.items[i].metadata.name;
+					console.log(data.items[i].metadata.name);
+					
+					var namespace = data.items[i].metadata.namespace;
+					console.log(data.items[i].metadata.namespace);
+					
+					var limits_memory = 0;
+					var requests_memory = 0;
+					var requests_cpu = 0;
+					
+					// 혹시 containers 가 여러개면 합쳐줘야 돼서 
+					var containers = data.items[i].spec.containers;
+					for (var k=0; k<containers.length; k++) {
+						
+						// containers resources 에 있는 limits memory sumary
+						try {
+							limits_memory_str = containers[k].resources.limits.memory;
+							if (limits_memory != null && limits_memory != undefined) {
+								console.log("limits_memory_str : " + limits_memory_str);
+								
+								limits_memory_str = limits_memory_str.toLowerCase();
+								split_index = limits_memory_str.lastIndexOf('m');
+								limits_memory_str = limits_memory_str.substring(0,split_index);
+								limits_memory += parseInt(limits_memory_str);
+							} 
+						} catch (e) {}
+						
+						// containers resources 에 있는 requests memory summary
+						try {
+							requests_memory_str = containers[k].resources.requests.memory;
+							if (requests_memory != null && requests_memory != undefined) {
+								console.log("requests_memory_str : " + requests_memory_str);	
+								
+								requests_memory_str = requests_memory_str.toLowerCase();
+								split_index = requests_memory_str.lastIndexOf('m');
+								requests_memory_str = requests_memory_str.substring(0,split_index);
+								requests_memory += parseInt(requests_memory_str);
+							} 
+						} catch (e) {}
+						
+						
+						// containers resources 에 있는 requests cpu sumary		
+						try {
+							requests_cpu_str = containers[k].resources.requests.cpu;
+							if (requests_cpu_str != null && requests_cpu_str != undefined) {
+								console.log("requests_cpu_str : " + requests_cpu_str);	
+								
+								requests_cpu_str = requests_cpu_str.toLowerCase();
+								split_index = requests_cpu_str.lastIndexOf('m');
+								requests_cpu_str = requests_cpu_str.substring(0,split_index);
+								requests_cpu += parseInt(requests_cpu_str);
+							} 
+						} catch (e) {}
+					}
+					
+
+					console.log("limits_memory : " + limits_memory + " , requests_memory : " + requests_memory + " , requests_cpu : " + requests_cpu);
+					
+					console.log("============================================");
+					
+					htmlString = "";
+					
+					htmlString += 	'<div class="card bg-success p-15 monitoring-card" onclick="clickedCard(' + i + ');">' + 
+	                    				'<div class="media widget-ten">' + 
+		                        			'<div class="media-body">' + 
+			                            		'<h2 class="color-white container_name_in_card">' + name + '</h2>' + 
+			                            		'<p class="m-b-0"> namespace : ' + namespace + '</p>' +
+			                            		'<p class="m-b-0"> cpu : ' + requests_cpu + ' m</p>' +  
+			                            		'<div class="progress">' + 
+		  						  					'<div class="progress-bar bg-primary" role="progressbar" aria-valuenow="' + 10 + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + 10 + '%;"></div>' +
+	  											'</div>' + 
+			                            		'<p class="m-b-0"> mem : ' + requests_memory + ' Mi</p>' +
+			                            		'<div class="progress">' + 
+	  						  						'<div class="progress-bar bg-primary" role="progressbar" aria-valuenow="' + 10 + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + 10 + '%;"></div>' +
+												'</div>' + 			                            		
+		                        			'</div>' + 
+	                    				'</div>' +
+                					'</div>';
+      					
+                	$("#monitoring-card-icons").append(htmlString);
+
+
+      				/* detail 세부 모달 만들기 위해서  */
+  					detailArray.push({
+	  					"name":name,
+	  					"namespace":namespace,
+	  					"creation_timestamp":creation_timestamp,
+	  					"limits_memory":limits_memory,
+	  					"requests_memory":requests_memory,
+	  					"requests_cpu":requests_cpu
+  					});
+  					
+  					// detailArray 여기에 담아서 나중에 index로 호출해서 사용할것, 
+  					// 실시간 사용을 원하면 name을 parameter로 던지고 get_pods(namespace)로 데이터 가져와서 던진 parameter name이랑 일치하는 데이터 추출할것, 
+  					// 변경하게 된다면 detailArray 지우고 clickedCard 이로직도 수정해야 됨
+				}
+			}
+		});
+    	
+    	console.log(detailArray);
+    });
+
+    
+    function clickedCard (index) {
+    	
+    	// console.log("clicked");
+    	
+    	$("#monitor_detail_modal").modal('show');
+		$("#monitor_detail_modal").show();
+		$(".modal-backdrop").show();
+		
+		$("#modal_name").text(detailArray[index].name);
+		$("#modal_requests_cpu").text(detailArray[index].requests_cpu);
+		$("#modal_requests_memory").text(detailArray[index].requests_memory);
+		$("#modal_namespace").text(detailArray[index].namespace);
+		$("#modal_creation_timestamp").text(detailArray[index].creation_timestamp);
+		
+		// kube system 은 delete button 안보이게
+		var hide_namesapce = $("#modal_namespace").text();
+		// console.log(hide_namesapce);
+		// console.log(hide_namesapce == "kube-system");
+		if (hide_namesapce == "kube-system") {
+			$(".modal-footer").hide();
+		} else {
+			$(".modal-footer").show();
+		}
     }
+    
+    function modalclose(){
+    	// location.reload();
+		$("#monitor_detail_modal").hide();
+		$(".modal-backdrop").hide();
+    }
+    
+    function delete_pod() {
+    	var del_pod_name = $("#modal_name").text();
+    	var del_namespace = $("#modal_namespace").text();
+		
+    	swal({
+   			title: 'Delete Pod',
+   			text: 'Pod 삭제 하시겠습니까? (10~20 초 소요됩니다.)',
+               showCancelButton: true,
+               allowOutsideClick: false, // 바깥 클릭안되게, 바깥 클릭하면 창 종료되니깐
+               confirmButtonColor: "#DD6B55",
+               allowEscapeKey: false,
+   			}).then(function(result) {
+   				
+   				console.log(result);
+   				
+   				if (result.dismiss === "cancel") { // 취소면 그냥 나감
+   					return;
+   				}
+   				
+   				$.ajax({
+   					url: 'http://210.110.195.12:5000/delete_pod',
+   					type:'POST',
+   					dataType:'json',
+   					async:false,
+   					data: {
+   						"pod_name":del_pod_name,
+   						"namespace":del_namespace
+   					},
+   					success:function(data){
+   						console.log(data);
+   						console.log(JSON.stringify(data));
+   						swal("삭제 성공 했습니다.","","success");
+   						// window.location.reload();
+   					}
+   		    	});
+   		    	
+   			});
+ 
+    }
+
+    // chart 생성
+	var ctx = document.getElementById( "myBarChart" );
+	ctx.height = 200;
+	
+	var myBarChart = new Chart( ctx, {
+		type: 'bar',
+		data: {
+			datasets: [
+				{
+					label: "CPU",
+					fill:false,
+					borderColor: "rgba(0,0,0,0.5)",
+					borderWidth: "1",
+					backgroundColor: "#FF6384",
+					hoverBackgroudColor: "#FF6384",
+					data: [ 10 ]
+                },
+				{
+					label: "MEM",
+					fill:false,
+					borderColor: "rgba(0,0,0,0.5)",
+					borderWidth: "1",
+					backgroundColor: "#36A2EB",
+					hoverBackgroudColor: "#36A2EB",
+					data: [ 10 ]
+                }
+			]
+		},
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true,
+	                  	step: 5,
+	                 	max: 100,
+                        userCallback: function(value, index, values) {
+                           	value = value.toString();
+                           	value = value.split(/(?=(?:...)*$)/);
+                           	value = value.join(',');
+                           	value += " %";
+                           
+                           	return value;
+                        }
+	            	}
+	                
+	            }]
+	        }
+	    }
+
+	}); 
+	
     </script>
 
 </body>
