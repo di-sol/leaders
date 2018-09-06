@@ -1,5 +1,7 @@
 package com.leaders.service;
 
+import java.util.ArrayList;
+
 import com.leaders.dto.LoginVO;
 import com.leaders.dto.MemberDTO;
 
@@ -16,4 +18,6 @@ public interface MemberService {
 	public String Deletemember(String userId) throws Exception;
 	
 	public MemberDTO selectMemberpw(String userId,String userPwd) throws Exception;
+	
+	public ArrayList<MemberDTO> selectMemberall() throws Exception;
 }

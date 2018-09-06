@@ -1,6 +1,7 @@
 package com.leaders.dto;
 
 public class MemberDTO {
+	private String userNum;
 	private String userName;
 	private String userId;
 	private String userPwd;
@@ -10,6 +11,12 @@ public class MemberDTO {
 	private int isAdmin;
 	private String joinDate;
 	
+	public String getUserNum() {
+		return userNum;
+	}
+	public void setUserNum(String userNum) {
+		this.userNum = userNum;
+	}
 	public String getUserName() {
 		return userName;
 	}

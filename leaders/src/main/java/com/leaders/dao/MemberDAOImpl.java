@@ -1,9 +1,11 @@
 package com.leaders.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -80,4 +82,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(Namespace+".selectMemberpw", data);
 	}
 
+	@Override
+	public ArrayList<MemberDTO> selectMemberall() throws Exception {
+		
+		// TODO Auto-generated method stub
+		return (ArrayList) sqlSession.selectList(Namespace, ".selectMemberall");
+	}
 }

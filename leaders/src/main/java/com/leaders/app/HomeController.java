@@ -1,6 +1,7 @@
 package com.leaders.app;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -292,11 +293,19 @@ public class HomeController {
 		
 		return "/Report/ClusterReport";
 	}
+	
+	
 	@RequestMapping(value = "/SystemManage/User", method = RequestMethod.GET)
 	public String User(Locale locale, Model model) throws Exception {
+		logger.info("user");
 		
+		ArrayList<MemberDTO> memberlist = member_service.selectMemberall();
+		model.addAttribute("memberlist", memberlist);
+			
 		return "/SystemManage/User";
 	}
+	
+	
 	@RequestMapping(value = "/SystemManage/Group", method = RequestMethod.GET)
 	public String Group(Locale locale, Model model) throws Exception {
 		

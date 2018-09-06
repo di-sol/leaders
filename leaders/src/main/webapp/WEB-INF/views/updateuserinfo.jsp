@@ -63,6 +63,7 @@
 			                                    <div class="form-group">
 			                                        <label>이름</label>
 			                                        <input type="text" class="form-control" name="userName" value="${MemberDTO.userName}">
+			                                        
 			                                    </div>
 			                                  	<div class="form-group">
 			                                        <label>이메일</label>

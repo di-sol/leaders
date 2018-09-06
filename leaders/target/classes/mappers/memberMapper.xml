@@ -77,6 +77,11 @@
  		]]>
  	</select>
     
+    <select id="selectMemberall" resultType="com.leaders.dto.MemberDTO">
+       <![CDATA[
+         SELECT * FROM member
+       ]]>
+    </select>
     
 </mapper>
  

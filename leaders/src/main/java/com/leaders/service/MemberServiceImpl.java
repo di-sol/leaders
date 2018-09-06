@@ -1,5 +1,7 @@
 package com.leaders.service;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Repository;
@@ -67,6 +69,12 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDTO selectMemberpw(String userId, String userPwd) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectMemberpw(userId, userPwd);
+	}
+
+	@Override
+	public ArrayList<MemberDTO> selectMemberall() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectMemberall();
 	}
 
 	
