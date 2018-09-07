@@ -64,54 +64,55 @@
                 </div>
             </div>
             <!-- End Bread crumb -->
-            
-            
-          	<table id="GPUserversTable" class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%">
-					<thead class="table-success">
-			    		<tr>
-			    			<th width="15%">Nodename</th>
-			    			<th width="10%">State</th>
-			    			<th width="10%">CPU(%)</th>
-			    			<th width="18%">Memoty(MB)</th>
-			    			<th width="17%">NetFlow(MB/s)</th>
-			    			<th width="10%">Load</th>
-			    			<th width="10%">Cores</th>
-			    			<th width="10%">Jobs</th>
-			    		</tr>
-		    		</thead>
-		    		</tbody>
-		    			<tr>
-			    			<td><a href="#">aicu01</a></td>
-			    			<td>
-			    			<div class="progress" style="height: 20px;">
-							  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Free</div>
-							</div>
-			    			</td>
-			    			<td>
-			    			<div class="progress" style="height: 20px;">
-							  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0.5</div>
-							</div>
-							</td>
-			    			<td>
-			    			<div class="progress" style="height: 20px;">
-							  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="5459" aria-valuemin="0" aria-valuemax="31334">5459/31334</div>
-							</div>
-							</td>
-			    			<td>0.0</td>
-			    			<td>
-			    			<div class="progress" style="height: 20px;">
-							  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0.2</div>
-							</div>
-							</td>
-			    			<td>
-			    			<div class="progress" style="height: 20px;">
-							  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0/40</div>
-							</div>
-							</td>
-			    			<td></td>
-			    		</tr>
-		    		</tbody>
-				</table>
+           
+            <div class="container">
+	          	<table id="GPUserversTable" class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%">
+						<thead class="table-success">
+				    		<tr>
+				    			<th width="15%">Nodename</th>
+				    			<th width="10%">State</th>
+				    			<th width="10%">CPU(%)</th>
+				    			<th width="18%">Memoty(MB)</th>
+				    			<th width="17%">NetFlow(MB/s)</th>
+				    			<th width="10%">Load</th>
+				    			<th width="10%">Cores</th>
+				    			<th width="10%">Jobs</th>
+				    		</tr>
+			    		</thead>
+			    		<tbody>
+			    			<tr>
+				    			<td><a href="#">aicu01</a></td>
+				    			<td>
+				    			<div class="progress" style="height: 20px;">
+								  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Free</div>
+								</div>
+				    			</td>
+				    			<td>
+				    			<div class="progress" style="height: 20px;">
+								  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0.5</div>
+								</div>
+								</td>
+				    			<td>
+				    			<div class="progress" style="height: 20px;">
+								  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="5459" aria-valuemin="0" aria-valuemax="31334">5459/31334</div>
+								</div>
+								</td>
+				    			<td>0.0</td>
+				    			<td>
+				    			<div class="progress" style="height: 20px;">
+								  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0.2</div>
+								</div>
+								</td>
+				    			<td>
+				    			<div class="progress" style="height: 20px;">
+								  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0/40</div>
+								</div>
+								</td>
+				    			<td></td>
+				    		</tr>
+			    		</tbody>
+					</table>
+				</div>
 				
 			<br><br>
             <!-- End Container fluid  -->

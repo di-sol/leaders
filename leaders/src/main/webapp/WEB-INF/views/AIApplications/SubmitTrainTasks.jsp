@@ -305,12 +305,15 @@ checkbox -->.funkyradio div {
 	                        	<div class="file_uplaod_set_info">
 		                        	<div class="col-6">
 			                        	<label>namespace (for upload)</label>
-			                        	<input class="form-control mr-sm-2" type="text" name="upload_namespace" >
-			                        	
+			                           	<select class="form-control" name="upload_namespace" onchange="letsChangePodname();">
+			                              	<option value='' selected>select namespace</option>
+			                           	</select>			                        	
 		                        	</div>	                        	
 		                        	<div class="col-6">
 		                        		<label>podname (for upload)</label>
-			                        	<input class="form-control mr-sm-2" type="text" name="upload_podname" >
+			                           	<select class="form-control" name="upload_podname">
+			                              	<option value='' selected>select podname</option>
+			                           	</select>			                 		                        		
 		                        	</div>
 	                        	</div>
                         	</form>
@@ -463,7 +466,77 @@ checkbox -->.funkyradio div {
 	<!-- file upload 위한 jquery.form.js 추가  -->
    	<script src="<%=cp%>/resources/js/jquery.form.js"></script>
 	
-   <script type="text/javascript">
+   	<script type="text/javascript">
+   	
+	
+	$(document).ready(function () {
+		// 정영현 추가, 파일 업로드할때 namespace, pod_name select 타입으로 수정
+		var sendUrl = "";
+    	// console.log('${isadmin}');
+   		// sendUrl = 'http://210.110.195.12:5000/list_namespace'; // 이건 이상한 namespace 도 같이 가져온다. 그냥 getallpods 으로 가져올것
+   		if ('${isadmin}' == 1) { // admin 일때
+        	$.ajax({
+    			url: 'http://210.110.195.12:5000/get_all_pods',
+    			type:'POST',
+    			dataType:'json',
+    			async:false,
+    			success:function(data){
+    				// console.log(data);
+    				namespace_list = []; // 이미 있는건지 중복 체크용
+					// pods list 만들어서 list 에 append 해줄것
+					for (var i=0; i<data.items.length; i++) {
+						var sel_namespace = data.items[i].metadata.namespace;
+
+						if (!namespace_list.includes(sel_namespace)) {
+							namespace_list.push(sel_namespace);
+						} else { // 이미 있으면 skip
+							continue;
+						}
+						
+						htmlString = '<option value="' + sel_namespace + '">' + sel_namespace + '</option>'
+						$("select[name='upload_namespace']").append(htmlString);
+					}
+    				
+    			}
+        	});
+        	
+    	} else { // user 일때 
+    		sel_namespace = "${userid}";
+    		htmlString = '<option value="' + sel_namespace + '">' + sel_namespace + '</option>';
+    		$("select[name='upload_namespace']").append(htmlString);
+    	}
+	});
+	
+	// namespace 선택 변경에 따른 podname option 변경
+	function letsChangePodname () {
+		
+		sel_namespace = $("select[name='upload_namespace']").val();
+		
+		// 초기화
+		$("select[name='upload_podname']").empty();
+		
+		$.ajax({
+			url: 'http://210.110.195.12:5000/get_pods',
+			type:'POST',
+			dataType:'json',
+			async:false,
+			data:{"namespace" : sel_namespace},
+			success:function(data){
+				// console.log(data);
+				htmlString = '<option value="">select podname</option>'
+				
+				for (var i=0; i<data.items.length; i++) {
+					var sel_podname = data.items[i].metadata.name;
+
+					htmlString += '<option value="' + sel_podname + '">' + sel_podname + '</option>'
+					
+				}
+				$("select[name='upload_podname']").append(htmlString);
+			}
+		});
+		
+	}
+	
       /* 
       $(document).ready(function(){
             
@@ -646,15 +719,29 @@ checkbox -->.funkyradio div {
       
       	// 정영현 file upload 추가 start
       	function fileUploadMethod () {
-      		console.log($("input[name='upload_namespace']").val());
-      		console.log($("input[name='upload_podname']").val());
+      		//console.log($("select[name='upload_namespace']").val());
+      		//console.log($("select[name='upload_podname']").val());
+      		
+      		var sel_namespace = $("select[name='upload_namespace']").val();
+			var sel_podname = $("select[name='upload_podname']").val();
+
+			if ($("input[name='file']").val() == "") {
+				swal("파일이 선택 되지 않았습니다.","","error");
+				return;				
+			}
+			if (sel_namespace == "" || sel_podname == "") {
+				swal("namespace , podname 을 제대로 선택하세요","","error");
+				return;
+			}
+			
+					
       		$("#file_upload_form").ajaxForm({
                 url : "http://210.110.195.12:5000/upload",
                 enctype : "multipart/form-data",
                 dataType : "json",
                 data : {
-					"namespace":$("input[name='upload_namespace']").val(),
-					"podname":$("input[name='upload_podname']").val()
+					"namespace":sel_namespace,
+					"pod_name":sel_podname
               	},
                 success : function(result){
                 	console.log(result);
@@ -664,12 +751,8 @@ checkbox -->.funkyradio div {
                 	console.log(result);
                 	
                 	// 아래와 같은 에러 뜨기는 한데 이거 뜨면 upload 성공임
-                	// responseText:"Missing the required parameter `name` when calling `read_namespaced_pod`"
-                	if (result.responseText == "Missing the required parameter `name` when calling `read_namespaced_pod`") {
-                		swal("File Upload Success","","success");
-                	} else {
-                		swal("File Upload Failed","","error");
-                	}
+                	// responseText:"Missing the required parameter `name` when calling `read_namespaced_pod`", 이거랑 몇개 더있음,
+                	swal("File Upload Success","","success");
                 }
          	});
          	$("#file_upload_form").submit();

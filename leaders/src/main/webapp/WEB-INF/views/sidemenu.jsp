@@ -65,7 +65,7 @@
 
                     	<!-- 로그인 중일때만 -->
 
-                        <li><a href="<%=cp%>/logout"><i class="fa fa-sign-out"></i><span class="text">&ensp;Logout</span></a></li>
+                        <li><a href="<%=cp%>/logout" style="color:#fff"><i class="fa fa-sign-out" style="color:#fff"></i><span class="text">&ensp;Logout</span></a></li>
 
                         <!--  -->
 

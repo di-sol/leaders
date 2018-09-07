@@ -68,15 +68,15 @@
             <!-- End Bread crumb -->
              <div class="container">
   				<div class="row text-center">
-					<div class="col-sm">
+					<div class="col-4">
 						<label>GPUs:4</label>
                        	<canvas id="myChart"></canvas>
                     </div>
-                    <div class="col-sm">
+                    <div class="col-4">
                     	<label>GPU Core</label>
                        	<canvas id="myChart2"></canvas>
                     </div>
-                    <div class="col-sm">
+                    <div class="col-4">
                     	<label>GPU MEM</label>
                        	<canvas id="myChart3"></canvas>
                     </div>

@@ -69,27 +69,80 @@
             
             <div class="container">
             	<div class="row">
-            		<div class="col-md-auto text-right" style="padding-top:10px">
-            			<a style="color:green;font-weight: bold;font-size:15px;">Import license&nbsp;:&nbsp;</a>
-            		</div>
-            		<div class="col-5">
-            			<input type="text" class="form-control" style="width:100%;">	
-            		</div>
-            		<div class="col-1 text-left" style="padding-top:10px">
-            			<i class="fa fa-folder-open" aria-hidden="true"></i>
-            		</div>
+            		<button type="button" class="btn btn-primary" onclick="opentool()"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Insert</button>&nbsp;
+            		<button type="button" class="btn btn-primary"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp;&nbsp;Update</button>&nbsp;
+            		<button type="button" class="btn btn-primary"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp;Delete</button>&nbsp;
+            		<button type="button" class="btn btn-primary" onclick="location.reload()"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Refresh</button>&nbsp;
             	</div>
+            	
+            	<form action="<%=cp %>/admin/addLicense" method="post">
+            		<div id="licenseTool" style="display:none;padding: 10 10 10 10;margin: 10 0 10 0;border: outset;">
+            			<div style="width:30%;">
+            				<div style="width:90%;">
+            				<label>Model</label><input type="text" placeholder="Model" name="licenseName" style="width:100%;"/>
+            				</div>
+            				<div style="width:90%; margin-top:10px;">
+            				<label>Verison</label><input type="text" placeholder="Verison" name="licenseNumber" style="width:100%;"/>
+            				</div>
+            			</div>
+						<div style="width:30%;">
+							<div style="width:90%;">
+							<label>Install Date</label><input type="date" name="startDay" style="width:100%;"/>
+							</div>
+							<div style="width:90%; margin-top:10px;">
+							<label>Expiration Date</label><input type="date" name="endDay" style="width:100%;" onchange="checkEndDay();"/>
+							</div>	    
+						</div>
+						<div style="width:30%;">
+							<div style="width:90%;">
+							<label>Status</label>
+            				<select name="licenseStatus" style="width:100%;">
+            					<option selected value="선택...">-- Select --</option>
+							    <option value="등록">등록</option>
+								<option value="사용중">사용중</option>
+								<option value="정지">정지</option>
+								<option value="만료">만료</option>
+							</select>	
+							</div>
+							<div style="width:90%; margin-top:30px; display:flex;"> 
+		                    <input type="submit" value="등록" class="btn btn-primary" style="width:50%;" name="addLicenseBtn" onclick="return addLicenseMethod();"/> 
+		                    <input type="button" value="취소" class="btn btn-primary" style="width:50%; float:right; margin-left:10px;" onclick="cancelInput();"/>
+		                    </div>
+		                 </div>
+		             </div>
+		             <input type="hidden" value="" name="modifyNum" /> <!-- 이 값 유무에 따라서 신규등록인지 수정인지 구분 -->
+		          </form>
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
 	            <div class="row">
             		<div class="col">
 	            	<table id="ModuleTable" class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%">
 						<thead class="table-success">
 				    		<tr>
-				    			<th width="25%">Model</th>
-				    			<th width="25%">Version</th>
-				    			<th width="25%">Install Date</th>
-				    			<th width="25%">Expiration Date</th>
+				    			<th width="3%"></th>
+				    			<th width="17%">Model</th>
+				    			<th width="20%">Version</th>
+				    			<th width="20%">Install Date</th>
+				    			<th width="20%">Expiration Date</th>
+				    			<th width="20%">Status</th>
 				    		</tr>
 			    		</thead>
+			    		<c:forEach  var="memberlist" items="${memberlist}" >
+				    		<tr>
+				    			<td></td>
+				    			<td></td>
+				    			<td></td>
+				    			<td></td>
+				    			<td></td>
+				    		</tr>
+				   		</c:forEach>
 					</table>
 					</div>
 				</div>
@@ -158,6 +211,10 @@
 		'order': [0, 'desc'],
 		"bInfo" : false,
     });
+    
+    function opentool(){
+    	$("#licenseTool").css("display","flex");
+    }
     
     </script>
 

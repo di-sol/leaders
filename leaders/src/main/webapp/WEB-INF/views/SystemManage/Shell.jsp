@@ -280,20 +280,18 @@
 		$(document).ready(function(){
 			// tree connection to function , tree 구성 부분
 			// tree 에 namespace(userid) 넣기 
-			var namespace = "${userid}";
-			$("#namespace_intree").append(namespace);
+			$("#namespace_intree").append("${userid}");
 			
 			// admin, user 별 pods list 다르게 가져오기 위함
 			var sendUrl = "";
-	    	console.log(namespace);
-	    	console.log('${isadmin}');
+	    	// console.log('${isadmin}');
 	
 	    	if ('${isadmin}' == 1) { // admin 일때
 	    		sendUrl = 'http://210.110.195.12:5000/get_all_pods';
 	    		inputdata = {};
 	    	} else { // user 일때 
 	    		sendUrl = 'http://210.110.195.12:5000/get_pods';
-	    		inputdata = {"namespace":namespace};
+	    		inputdata = {"namespace":"${userid}"};
 	    	}
 	    	
 	    	$.ajax({
@@ -308,9 +306,7 @@
 					for (var i=0; i<data.items.length; i++) {
 						
 						var pod_name = data.items[i].metadata.name;
-						if ("${userid}" == "admin") { // admin 이면 각각의 namespace 로 재정의 해줘야 된다. 원래값 "${userid}" 로 확인할 것 
-							namespace = data.items[i].metadata.namespace;
-						}
+						var namespace = data.items[i].metadata.namespace;
 						
 						htmlString = 	'<li><a href="javascript:void(0)" onclick="executePod(\'' + pod_name + '\',\'' + namespace + '\');">' + 
 										'<input type="checkbox"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;' + pod_name + '</a></li>';
@@ -325,7 +321,7 @@
 		    // socket 받는값
 		    socket.on('my response', function(msg) {
 		    	var data = msg.data.trim();
-		    	console.log(data);
+		    	// console.log(data);
 		    	if (msg.data == "Connected") {
 		    		// 처음들어오면 Connected라는 문구 console 에 입력되는데 재접속했을때도 없으니깐 일관성 유지 위해 그냥 없앨것
 		    		return;
@@ -360,7 +356,7 @@
 	            	return false;
 	            }
 	            
-	            console.log(e.keyCode);  
+	            // console.log(e.keyCode);  
 	            if (e.keyCode == 17 || e.keyCode == 88 || e.keyCode == 67 || e.keyCode == 86) { // ctrl 들어와서 x,c,v 복사 붙여넣기 할경우에는 커서이동되면 안된다
 	            	// empty
 	            } else {
