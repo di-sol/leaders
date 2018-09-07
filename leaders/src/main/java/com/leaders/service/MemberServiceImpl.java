@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.leaders.dao.MemberDAO;
 import com.leaders.dto.LoginVO;
@@ -72,10 +71,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<MemberDTO> selectMemberall() throws Exception {
+	public ArrayList<MemberDTO> memberlist() throws Exception {
 		// TODO Auto-generated method stub
-		return dao.selectMemberall();
+		return dao.memberlist();
 	}
-
-	
 }

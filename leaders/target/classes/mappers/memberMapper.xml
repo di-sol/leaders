@@ -76,12 +76,11 @@
  			WHERE userId = #{userId} AND userPwd=password(#{userPwd})
  		]]>
  	</select>
-    
-    <select id="selectMemberall" resultType="com.leaders.dto.MemberDTO">
-       <![CDATA[
-         SELECT * FROM member
-       ]]>
-    </select>
-    
+   
+   <select id="memberlist" resultType="com.leaders.dto.MemberDTO">
+ 		<![CDATA[
+ 			SELECT * FROM member order by userNum
+ 		]]>
+ 	</select>
 </mapper>
  

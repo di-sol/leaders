@@ -22,6 +22,7 @@ import com.leaders.dto.LoginVO;
 import com.leaders.dto.MemberDTO;
 import com.leaders.service.MemberService;
 import com.mysql.fabric.Server;
+import com.mysql.fabric.xmlrpc.base.Member;
 
 /**	
  * Handles requests for the application home page.
@@ -299,9 +300,9 @@ public class HomeController {
 	public String User(Locale locale, Model model) throws Exception {
 		logger.info("user");
 		
-		ArrayList<MemberDTO> memberlist = member_service.selectMemberall();
+		ArrayList<MemberDTO> memberlist = member_service.memberlist();
 		model.addAttribute("memberlist", memberlist);
-			
+		
 		return "/SystemManage/User";
 	}
 	

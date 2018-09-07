@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -83,9 +82,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public ArrayList<MemberDTO> selectMemberall() throws Exception {
-		
+	public ArrayList<MemberDTO> memberlist() throws Exception {
 		// TODO Auto-generated method stub
-		return (ArrayList) sqlSession.selectList(Namespace, ".selectMemberall");
+		return (ArrayList)sqlSession.selectList(Namespace+".memberlist");
 	}
 }

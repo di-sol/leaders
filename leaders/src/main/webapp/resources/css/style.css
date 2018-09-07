@@ -1080,13 +1080,12 @@ h6.h1 {
 .header {
   position: relative;
   z-index: 50;
-  background: #fff;
+  background: #505050;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
 }
 .header .top-navbar {
   min-height: 60px;
   padding: 0 15px 0 0;
-  border-bottom: solid 4px #2F9505;
 }
 .header .top-navbar .dropdown-toggle:after {
   display: none;
@@ -1094,12 +1093,14 @@ h6.h1 {
 .header .top-navbar .navbar-header {
   line-height: 45px;
   text-align: center;
-  background: #fff;
+  background: #505050;
 }
 .header .top-navbar .navbar-header .navbar-brand {
   margin-right: 0;
   padding-bottom: 0;
   padding-top: 0;
+  color:#fff;
+  font-weight: bold;
 }
 .header .top-navbar .navbar-header .navbar-brand .light-logo {
   display: none;
@@ -1529,12 +1530,13 @@ textarea {
   top: -10;
   z-index: 20;
   padding-top: 60px;
-  background: #fff;
+  background: #282828;
   -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
   box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
 }
 .fix-sidebar .left-sidebar {
   position: fixed;
+  
 }
 .sidebar-footer {
   position: fixed;
@@ -1562,7 +1564,7 @@ textarea {
   display: block;
 }
 .sidebar-nav {
-  background: #fff;
+  background: #282828;
   padding: 0;
 }
 .sidebar-nav ul {
@@ -1762,6 +1764,7 @@ textarea {
     padding-bottom: 0;
     position: absolute;
     overflow-x: hidden !important;
+    background: #282828;
   }
   .mini-sidebar .hide-menu {
     display: none;
@@ -5501,7 +5504,7 @@ tbody tr td:last-child {
   margin: 100px 0;
 }
 .login-form {
-  background: #ffffff;
+  background: s;
   padding: 30px 30px 20px;
   border-radius: 2px;
 }

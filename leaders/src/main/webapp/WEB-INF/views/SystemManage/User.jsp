@@ -87,19 +87,19 @@
 				    			<th width="30%">Maximum number of use core</th>
 				    		</tr>
 			    		</thead>
-			    		<tbody>
+			    		
+			    		
 			    		<c:forEach  var="memberlist" items="${memberlist}" >
-			    			<tr style="font-size:14px;">
-			    				<td style="vertical-align: middle; width:3%;">
-			    				<input type="checkbox" name="MemberNum" value="${memberlist.userNum}">
-			    				</td>
-			    				<td>${memberlist.userId}</td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    			</tr>
-			    		</c:forEach> 
-			    		</tbody>
+				    		<tr>
+				    			<td><input type="checkbox" value="${memberlist.userNum}" name="userNum"></td>
+				    			<td>${memberlist.userId}</td>
+				    			<td></td>
+				    			<td></td>
+				    			<td></td>
+				    		</tr>
+				   		</c:forEach>
+				    
+				    
 					</table>
 					</div>
 				</div>

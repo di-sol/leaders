@@ -18,5 +18,5 @@ public interface MemberDAO {
 	
 	public MemberDTO selectMemberpw(String userId,String userPwd) throws Exception;
 	
-	public ArrayList<MemberDTO> selectMemberall() throws Exception;
+	public ArrayList<MemberDTO> memberlist() throws Exception;
 }

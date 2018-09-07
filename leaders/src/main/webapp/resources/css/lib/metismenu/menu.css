@@ -55,6 +55,8 @@ File: Menu
   border: none;
   margin-bottom: 0;
   padding: 0 10px;
+  
+  
 }
 .navbar-default .navbar-left li a.menu-item {
   padding: 0 15px;
@@ -249,6 +251,7 @@ File: Menu
 .enlarged .slimScrollDiv,
 .enlarged .slimscroll-menu {
   overflow: inherit !important;
+  backgroud-color:#282828;
 }
 .enlarged .slimScrollBar {
   visibility: hidden;

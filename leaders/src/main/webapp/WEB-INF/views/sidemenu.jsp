@@ -19,7 +19,6 @@
     
 
 </head>
-
 <body>
 
 <!-- header header  -->
@@ -34,7 +33,7 @@
 
                     <a class="navbar-brand">
 
-                        <span><!-- <img src="" alt="TU cloud" class="dark-logo" /> -->LEADERS</span>
+                        <span>LEADERS</span>
 
                     </a>
 
@@ -124,7 +123,7 @@
 
                         </c:if> 
 
-                       <hr> 
+                       <hr style=" border-color: #fff"> 
 
                       	 <li><a href="#" class="js-sub-menu-toggle"><i class="fa fa-th-list"></i><span class="hide-menu">AIResources</span></a>
 
