@@ -1,10 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <%
 	String cp = request.getContextPath();
 	request.setCharacterEncoding("UTF-8");
 %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,7 +16,6 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/x-icon" sizes="16x16" href="<%=cp %>/resources/images/favicon.ico">
-    <%-- <link rel="icon" type="image/png" sizes="16x16" href="<%=cp %>/resources/images/favicon.png"> --%>
     <title>LEADERS</title>
 	<link href="<%=cp %>/resources/css/lib/owl.carousel.min.css" rel="stylesheet" />
     <link href="<%=cp %>/resources/css/lib/owl.theme.default.min.css" rel="stylesheet" />
@@ -26,124 +26,66 @@
     <link href="<%=cp %>/resources/css/style.css" rel="stylesheet">
     <link href="<%=cp %>/resources/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
     <link href="<%=cp %>/resources/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
-
 	<link href="<%=cp %>/resources/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
 	
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-    <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body class="fix-header fix-sidebar">
-    <!-- Preloader - style you can find in spinners.css -->
-    <div class="preloader">
-        <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
-    <!-- Main wrapper  -->
-    <div id="main-wrapper">
-    
-    
-	<!-- /////////////////////////////////////////////////////// -->
-  	<!-- NAVIGATION MENU -->	
-  	<jsp:include page="/WEB-INF/views/sidemenu.jsp"></jsp:include>
-	<!-- /////////////////////////////////////////////////////// -->
-        <!-- header header  -->
-        <!-- Page wrapper  -->
-        <div class="page-wrapper">
-            <!-- Bread crumb -->
-            <div class="row page-titles">
-                <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">PayManage</h3> </div>
-                <div class="col-md-7 align-self-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Report</a>
-                        <li class="breadcrumb-item">Account</li>
-                        <li class="breadcrumb-item active">PayManage</li>
-                    </ol>
+   <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" >
+                        <span><!-- <img src="" alt="TU cloud" class="dark-logo" /> -->LEADERS</span>
+                    </a>
                 </div>
-            </div>
-            <!-- End Bread crumb -->
-            
-            
-            <div class="container">
-            	<div class="row">
-            	<!-- 
-            		<div class="form-group col-md-2">
-            		Group
-            		<select name='Node' class="form-control">
-					  <option value='' selected>-- ALL --</option>
-					  <option value=''></option>
-					</select>&emsp;
-					</div>
-					 -->
-					<div class="form-group col-md-2">
-            		User
-            		<select name='AlarmType' class="form-control">
-					  <option value='' selected>-- ALL --</option>
-					  <c:forEach  var="memberlist" items="${memberlist}" >
-					  	<option value='${memberlist.userId}'>${memberlist.userId}</option>
-					  </c:forEach>
-					</select>&emsp;
-					</div>
-					<div class="form-group col-md-2">
-					<br>
-					<input type="button" class="btn btn-primary" value="Query">
-					<!-- 
-					<input type="button" class="btn btn-primary" value="Pay">
-					 -->
-					</div>
-            	</div> 
-	            <div class="row">
-            		<div class="col">
-	            	<table id="PayManageTable" class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%">
-						<thead class="table-success">
+            </nav>
+        </div> 
+    <!-- Main wrapper  -->
+    
+    <div id="main-wrapper">
+    	<div class="container">
+    	<br><br>
+    		<div class="row text-center">
+	       	<table id="usagehistoryTable" class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%">
+				<thead class="table-success">
+				 		<tr>
+				   			<th width="25%">History</th>
+				   			<th width="25%">Price</th>
+				   			<th width="25%">Time</th>
+				  			<th width="25%">balance</th>
+				   		</tr>
+			    	</thead>
+			    	<c:forEach  var="Billinglist" items="${Billinglist}" >
 				    		<tr>
-				    			<th width="3%"></th>
-				    			<th width="17%">User</th>
-				    			<th width="20%">Total Pay(￥)</th>
-				    			<th width="20%">Last Pay Time</th>
-				    			<th width="20%">Balance(￥)</th>
-				    			<th width="20%">Detail</th>
-				    		</tr>
-			    		</thead>
-			    			<tr>
-			    				<td></td>
-			    				<td>Total</td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    			</tr>
-			    			<tbody>
-			    			<c:forEach  var="Billinglist" items="${Billinglist}" >
-				    		<tr>
-				    			<td>${Billinglist.billingNum}</td>
-				    			<td>${Billinglist.billingUser}</td>
-				    			<td><fmt:formatNumber value="${Billinglist.price}" pattern="#,###"/></td>
+				    			<td>${Billinglist.billinghistory}</td>
+				    			
+				    			<c:choose>
+								    <c:when test="${Billinglist.price lt 0}">
+								       <td><a class="text-danger" style="color:#0000FF;"><fmt:formatNumber value="${Billinglist.price}" pattern="#,###"/></a></td>
+								    </c:when>
+								    <c:when test="${Billinglist.price ge 0}">
+								       <td><a style="color:#0000FF;">+<fmt:formatNumber value="${Billinglist.price}" pattern="#,###"/></a></td>
+								    </c:when>
+								</c:choose>
 				    			<td>${Billinglist.billingTime}</td>
 				    			<td><fmt:formatNumber value="${Billinglist.balance}" pattern="#,###"/></td>
-				    			<td>${Billinglist.billinghistory}</td>
 				    		</tr>
 				   		</c:forEach>
-				   		</tbody>
-					</table>
-					</div>
+				</table>
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="col">
+				<input type="button" class="btn btn-outline-danger" value="충전하기" onclick="charge()" style="width:100%">
+				</div>
+				<div class="col">
+				<input type="button" class="btn btn-outline-info" value="돌아가기" onclick="javascript:history.go(-1)" style="width:100%">
 				</div>
 			</div>
-			
-			
-			
-          
-
-            <!-- End Container fluid  -->
-            <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. <a href="http://leaderssys.com/" target="_blank">[주]리더스시스템즈</a></footer>
-            <!-- End footer -->
-        </div>
-        <!-- End Page wrapper  -->
+		</div>
+   	 	<!-- footer -->
+        <footer class="footer"> © 2018 All rights reserved. <a href="http://leaderssys.com/" target="_blank">[주]리더스시스템즈</a></footer>
+        <!-- End footer -->
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
@@ -167,9 +109,6 @@
     
     <script src="<%=cp %>/resources/js/lib/calendar-2/moment.latest.min.js"></script>
     <!-- scripit init-->
-    
-    <!-- newAlarmModal 이랑 겹쳐서 에러 남 , 그래서 주석 처리함 나중에 필요하면 로직 수정해야됨. -->
-    <%-- <script src="<%=cp %>/resources/js/lib/calendar-2/semantic.ui.min.js"></script> --%>
     
     <!-- scripit init-->
     <script src="<%=cp %>/resources/js/lib/calendar-2/prism.min.js"></script>
@@ -195,10 +134,9 @@
 	<script src="<%=cp %>/resources/js/lib/datatables/datatables-init.js"></script>
     
     <script type="text/javascript">
-    var table = $('#PayManageTable').DataTable({
-		'order': [0, 'desc'],
-		"bInfo" : false
-    });
+    function charge(){
+			location.href = "<%=cp %>/charge";
+		}
     </script>
 
 </body>

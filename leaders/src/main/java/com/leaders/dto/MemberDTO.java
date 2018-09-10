@@ -10,6 +10,7 @@ public class MemberDTO {
 	private String userGender;
 	private int isAdmin;
 	private String joinDate;
+	private int userBalance;
 	
 	public String getUserNum() {
 		return userNum;
@@ -65,4 +66,11 @@ public class MemberDTO {
 	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
+	public int getUserBalance() {
+		return userBalance;
+	}
+	public void setUserBalance(int userBalance) {
+		this.userBalance = userBalance;
+	}
+	
 }

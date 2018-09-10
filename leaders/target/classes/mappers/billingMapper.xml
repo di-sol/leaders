@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.leaders.mapper.billingMapper">
+	<insert id="insertbiling" parameterType="com.leaders.dto.BillingDTO">
+ 		<![CDATA[
+ 			INSERT INTO billing ( billingUser, billingTIme, billinghistory, price, balance)
+ 			VALUES
+ 			( #{billingUser}, now(), "충전", #{price}, #{balance})
+ 		]]>
+ 	</insert>
+ 	<select id="selectbillinginfo" resultType="com.leaders.dto.BillingDTO">
+ 		<![CDATA[
+ 			SELECT *
+ 			FROM billing
+ 			WHERE billingUser = #{billingUser} ORDER BY billingTime desc;
+ 		]]>
+ 	</select>
+ 	<select id="selectbilling" resultType="com.leaders.dto.BillingDTO">
+ 		<![CDATA[
+ 			SELECT *
+ 			FROM billing ORDER BY billingTime desc;
+ 		]]>
+ 	</select>
+ 	 <update id="updateBalance" parameterType="com.leaders.dto.BillingDTO">
+       <![CDATA[
+        UPDATE member 
+		SET userBalance = #{userBalance}
+		WHERE userId = #{userId}
+       ]]>
+    </update>
+</mapper>
+ 

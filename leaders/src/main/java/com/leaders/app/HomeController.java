@@ -18,8 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.leaders.dto.BillingDTO;
 import com.leaders.dto.LoginVO;
 import com.leaders.dto.MemberDTO;
+import com.leaders.service.BillingService;
 import com.leaders.service.MemberService;
 import com.mysql.fabric.Server;
 import com.mysql.fabric.xmlrpc.base.Member;
@@ -37,6 +39,8 @@ public class HomeController {
 	 */
 	@Inject
 	MemberService member_service;
+	@Inject
+	BillingService billing_service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
@@ -194,13 +198,58 @@ public class HomeController {
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model) throws Exception {
-		
 		String userId = (String)session.getAttribute("userid");
+		
 		MemberDTO dto = member_service.selectMemberinfo(userId);
 		model.addAttribute("MemberDTO", dto);
 		
 		return "mypage";
 	}
+	
+	@RequestMapping(value = "/charge", method = RequestMethod.GET)
+	public String charge(HttpSession session, Model model) throws Exception {
+		
+		String userId = (String)session.getAttribute("userid");
+		
+		MemberDTO dto = member_service.selectMemberinfo(userId);
+		model.addAttribute("MemberDTO", dto);
+		
+		return "charge";
+	}
+	
+	
+	@RequestMapping(value = "/plusbalance", method = RequestMethod.POST)
+	public void plusbalance(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String billingUser = (String)session.getAttribute("userid");
+		String price = request.getParameter("price");
+		String balance = request.getParameter("balance");
+		
+		String userId = (String)session.getAttribute("userid");
+		String userBalance = request.getParameter("balance");
+		
+		billing_service.insertbiling(billingUser, price, balance);
+		billing_service.updateBalance(userBalance, userId);
+		
+		PrintWriter out = response.getWriter();
+		
+		String output = null;
+		 
+		out.print(output);
+		out.flush();
+		out.close();	
+	}
+	
+	
+	@RequestMapping(value = "/usagehistory", method = RequestMethod.GET)
+	public String usagehistory(HttpSession session, Model model) throws Exception {
+		String billingUser = (String)session.getAttribute("userid");
+		
+		ArrayList<BillingDTO> Billinglist = billing_service.selectbillinginfo(billingUser);
+		model.addAttribute("Billinglist", Billinglist);
+		
+		return "usagehistory";
+	}
+	
 	
 	@RequestMapping(value = "/AIResources/GPUMonitor", method = RequestMethod.GET)
 	public String GPUMonitor(Locale locale, Model model) throws Exception {
@@ -249,9 +298,6 @@ public class HomeController {
 	@RequestMapping(value = "/FeatureMonitor/teyeMonitor", method = RequestMethod.GET)
 	public String teyeMonitor(Locale locale, Model model) throws Exception {
 		
-		
-		
-		
 		return "/FeatureMonitor/teyeMonitor";
 	}
 	@RequestMapping(value = "/FeatureMonitor/teyeExport", method = RequestMethod.GET)
@@ -287,6 +333,12 @@ public class HomeController {
 	@RequestMapping(value = "/Report/Account/PayManage", method = RequestMethod.GET)
 	public String PayManage(Locale locale, Model model) throws Exception {
 		
+		ArrayList<MemberDTO> memberlist = member_service.memberlist();
+		model.addAttribute("memberlist", memberlist);
+		
+		ArrayList<BillingDTO> Billinglist = billing_service.selectbilling();
+		model.addAttribute("Billinglist", Billinglist);
+		
 		return "/Report/Account/PayManage";
 	}
 	@RequestMapping(value = "/Report/ClusterReport", method = RequestMethod.GET)
@@ -298,7 +350,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/SystemManage/User", method = RequestMethod.GET)
 	public String User(Locale locale, Model model) throws Exception {
-		logger.info("user");
 		
 		ArrayList<MemberDTO> memberlist = member_service.memberlist();
 		model.addAttribute("memberlist", memberlist);
@@ -326,10 +377,5 @@ public class HomeController {
 	public String File(Locale locale, Model model) throws Exception {
 		
 		return "/Tools/File";
-	}
-	@RequestMapping(value = "/Setting/Module", method = RequestMethod.GET)
-	public String Module(Locale locale, Model model) throws Exception {
-		
-		return "/Setting/Module";
 	}
 }

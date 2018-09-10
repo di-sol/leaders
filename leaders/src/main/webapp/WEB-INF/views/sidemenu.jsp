@@ -32,9 +32,11 @@
                 <div class="navbar-header">
 
                     <a class="navbar-brand">
-
-                        <span>LEADERS</span>
-
+						
+						<!-- 정영현 추가 start -->
+                        <img id="logo_image" alt="" src="<%=cp %>/resources/icons/logo/logo_top.png">
+						<!-- 정영현 추가 end -->
+						
                     </a>
 
                 </div>
@@ -50,8 +52,9 @@
                         <!-- This is  -->
 
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+						
+						<!-- 정영현 onclick 추가  -->
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)" onclick="clickHideMenu();"><i class="ti-menu"></i></a> </li>
 
                     </ul>
 
@@ -296,8 +299,20 @@
 		
 
 	<script type="text/javascript">
-
- 
+	
+		// 정영현 추가 start
+		// menu click 시 logo hide / show 처리  
+		var isMenuHide = false;
+ 		function clickHideMenu () {	
+ 			if (isMenuHide) {
+ 				isMenuHide = false;
+ 				$("#logo_image").attr("src","<%=cp %>/resources/icons/logo/logo_top.png");	
+ 			} else {
+ 				isMenuHide = true;
+ 				$("#logo_image").attr("src","");
+ 			}
+ 		}
+ 		// 정영현 추가 end
 
 	</script>
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.leaders.mapper.moduleMapper">
+ 	<insert id="insertModule" parameterType="com.leaders.dto.ModuleDTO">
+ 		<![CDATA[
+ 			INSERT INTO module ( model, version, installDate, expirationDate, status) 
+ 			VALUES
+ 			( #{model}, #{version}, #{installDate}, #{expirationDate}, #{status})
+ 		]]>
+ 	</insert>
+ 	
+ 	<select id="selectAllModule" resultType="com.leaders.dto.ModuleDTO">
+ 		<![CDATA[
+ 			SELECT * FROM module 
+ 			ORDER BY moduleNum DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="selectModuleByNum" resultType="com.leaders.dto.ModuleDTO">
+ 		<![CDATA[
+ 			SELECT * FROM module 
+ 			WHERE moduleNum = #{updateNum}
+ 		]]>
+ 	</select>
+
+ 	<update id="updateModule" parameterType="com.leaders.dto.ModuleDTO">
+ 		<![CDATA[
+			UPDATE module 
+			SET 
+			model = #{model}, version= #{version}, installDate = #{installDate}, 
+			expirationDate = #{expirationDate}, status = #{status}
+			WHERE moduleNum = #{moduleNum}
+ 		]]>
+ 	</update>
+ 	
+ 	<update id="updateMultiModuleStatus" parameterType="java.util.HashMap">
+ 		<![CDATA[
+ 			UPDATE module 
+ 			SET status = #{moduleStatus}
+ 			WHERE moduleNum = ${moduleNumbersSqlString}
+ 		]]>
+ 	</update> 	
+ 	
+</mapper>
+ 

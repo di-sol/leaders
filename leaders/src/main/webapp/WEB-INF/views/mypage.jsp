@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <%
 	String cp = request.getContextPath();
 	request.setCharacterEncoding("UTF-8");
@@ -44,6 +45,7 @@
 <c:set var="userPhone" value="${MemberDTO.userPhone == null || empty MemberDTO.userPhone ? '' : MemberDTO.userPhone}" />
 <c:set var="userGender" value="${MemberDTO.userGender == null || empty MemberDTO.userGender ? '' : MemberDTO.userGender}" />
 <c:set var="joinDate" value="${MemberDTO.joinDate == null || empty MemberDTO.joinDate ? '' : MemberDTO.joinDate}" />
+<c:set var="userBalance" value="${MemberDTO.userBalance == null || empty MemberDTO.userBalance ? '' : MemberDTO.userBalance}" />
 
 
 
@@ -112,6 +114,23 @@
 								<td>JoinDate</td>
 								<td>${joinDate}</td>
 							</tr>
+							<tr>
+								<td>balance</td>
+								<c:choose>
+								    <c:when test="${userBalance lt 5000}">
+								       <td><a class="text-danger" style="color:#0000FF;">₩&nbsp;<fmt:formatNumber value="${userBalance}" pattern="#,###"/></a>
+								    </c:when>
+								    <c:when test="${userBalance ge 5000}">
+								       <td>₩&nbsp;<fmt:formatNumber value="${userBalance}" pattern="#,###"/>
+								    </c:when>
+								    <c:otherwise>
+								        <td>충전 된 금액이 없습니다.
+								    </c:otherwise>
+								</c:choose>
+								<input type="button" class="btn btn-outline-danger" value="충전하기" onclick="charge()">
+								<input type="button" class="btn btn-outline-info" value="이용내역" onclick="Usagehistory()">
+								</td>
+							</tr>
 						  </tbody>
 						</table>
 					</div>
@@ -127,6 +146,7 @@
 				<input type="hidden" name="userPhone" value="${userPhone}"/>
 				<input type="hidden" name="userGender" value="${userGender}"/>
 				<input type="hidden" name="joinDate" value="${joinDate}"/>
+				<input type="hidden" name="userBalance" value="${userBalance}"/>
             </div>
 
             <!-- End Container fluid  -->
@@ -250,6 +270,12 @@
 					 return;
 				 }
     	}
+   		function charge(){
+   			location.href = "<%=cp %>/charge";
+   		}
+   		function Usagehistory(){
+   			location.href = "<%=cp %>/usagehistory";
+   		}
     </script>
 
 </body>
