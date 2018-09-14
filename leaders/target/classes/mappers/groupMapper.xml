@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.leaders.mapper.groupMapper">
+ 	<insert id="insertGroup" parameterType="com.leaders.dto.GroupDTO">
+ 		<![CDATA[
+ 			INSERT INTO group_table ( groupName, groupServer, groupPriority) 
+ 			VALUES
+ 			( #{groupName}, #{groupServer}, #{groupPriority})
+ 		]]>
+ 	</insert>
+ 	
+ 	<select id="selectAllGroup" resultType="com.leaders.dto.GroupDTO">
+ 		<![CDATA[
+ 			SELECT * FROM group_table 
+ 			ORDER BY groupNum DESC
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="selectGroupByNum" resultType="com.leaders.dto.GroupDTO">
+ 		<![CDATA[
+ 			SELECT * FROM group_table 
+ 			WHERE groupNum = #{updateNum}
+ 		]]>
+ 	</select>
+
+ 	<update id="updateGroup" parameterType="com.leaders.dto.GroupDTO">
+ 		<![CDATA[
+			UPDATE group_table 
+			SET 
+			groupName = #{groupName}, groupServer= #{groupServer}, groupPriority = #{groupPriority}
+			WHERE groupNum = #{groupNum}
+ 		]]>
+ 	</update>
+ 	
+	<update id="deleteGroup" parameterType="com.leaders.dto.GroupDTO">
+ 		<![CDATA[
+			UPDATE group_table 
+			SET 
+			groupName = #{groupName}, groupServer= #{groupServer}, groupPriority = #{groupPriority}
+			WHERE groupNum = #{groupNum}
+ 		]]>
+ 	</update>
+ 	
+ 	
+ 	<select id="selectByGroupName" resultType="com.leaders.dto.GroupDTO">
+ 		<![CDATA[
+ 			SELECT * FROM group_table 
+ 			WHERE groupName = #{groupName}
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="selectByGroupNum" resultType="com.leaders.dto.GroupDTO">
+ 		<![CDATA[
+ 			SELECT * FROM group_table 
+ 			WHERE groupNum = #{updateNum}
+ 		]]>
+ 	</select>
+ 	
+ 	
+
+</mapper>
+ 

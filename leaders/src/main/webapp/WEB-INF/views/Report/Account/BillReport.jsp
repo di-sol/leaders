@@ -97,20 +97,29 @@
 				    			<th width="14%">Walltime</th>
 				    			<th width="14%">CPU Time</th>
 				    			<th width="14%">GPU Time</th>
-				    			<th width="14%">Free</th>
-				    			<th width="14%">Detail(￥)</th>
+				    			<th width="14%">Free(￥)</th>
+				    			<th width="14%">Detail</th>
 				    		</tr>
 			    		</thead>
+			    		<tfoot>
+				            <tr>
+				            	<th class="text-center" colspan="3">Total Free(￥)</th>
+				            	<th class="text-center" colspan="4"><p id="total" style="color:black"></p></th>
+				            
+				            </tr>
+				        </tfoot>
 			    		<tbody>
-			    			<tr>
-			    				<td>Total</td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    			</tr>
+			    			<c:forEach  var="Billinglist" items="${Billinglist}" >
+				    		<tr>
+				    			<td>${Billinglist.billingUser}</td>
+				    			<td>${Billinglist.jobCount}</td>
+				    			<td>${Billinglist.wallTime}</td>
+				    			<td>${Billinglist.cpuTIme}</td>
+				    			<td>${Billinglist.gpuTime}</td>
+				    			<td>${Billinglist.price}</td>
+				    			<td>${Billinglist.billinghistory}</td>
+				    		</tr>
+				   			</c:forEach>
 			    		</tbody>
 					</table>
 					</div>

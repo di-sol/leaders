@@ -21,7 +21,9 @@
  	<select id="selectbilling" resultType="com.leaders.dto.BillingDTO">
  		<![CDATA[
  			SELECT *
- 			FROM billing ORDER BY billingTime desc;
+ 			FROM billing 
+ 			WHERE billinghistory="충전"
+ 			ORDER BY billingTime desc;
  		]]>
  	</select>
  	 <update id="updateBalance" parameterType="com.leaders.dto.BillingDTO">
@@ -31,5 +33,20 @@
 		WHERE userId = #{userId}
        ]]>
     </update>
+    <select id="selecttotal"  resultType="integer">
+ 		<![CDATA[
+ 			select sum(price) from billing WHERE billinghistory="충전"
+ 		]]>
+ 	</select>
+ 	<select id="billinginfo" resultType="com.leaders.dto.BillingDTO">
+ 		<![CDATA[
+ 			SELECT *
+ 			FROM billing
+ 			WHERE billingUser = #{billingUser} 
+ 			AND billinghistory = "충전"
+ 			ORDER BY billingTime desc
+ 		]]>
+ 	</select>
+ 	
 </mapper>
  

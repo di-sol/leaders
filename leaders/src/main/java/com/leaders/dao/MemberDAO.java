@@ -13,10 +13,9 @@ public interface MemberDAO {
 	public MemberDTO selectMemberinfo(String userId) throws Exception;
 	public void updateMember(MemberDTO dto) throws Exception;
 	public void updateMemberpw(String userPwd,String userId) throws Exception;
-	
 	public String Deletemember(String userId) throws Exception;
-	
 	public MemberDTO selectMemberpw(String userId,String userPwd) throws Exception;
-	
 	public ArrayList<MemberDTO> memberlist() throws Exception;
+	
+	public ArrayList<MemberDTO> member() throws Exception;
 }

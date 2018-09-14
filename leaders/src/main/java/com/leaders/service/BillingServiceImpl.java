@@ -39,4 +39,16 @@ public class BillingServiceImpl implements BillingService {
 		return dao.updateBalance(userBalance, userId);
 	}
 
+	@Override
+	public int selecttotal() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selecttotal();
+	}
+
+	@Override
+	public ArrayList<BillingDTO> billinginfo(String billingUser) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.billinginfo(billingUser);
+	}
+
 }

@@ -86,4 +86,10 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList(Namespace+".memberlist");
 	}
+
+	@Override
+	public ArrayList<MemberDTO> member() throws Exception {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList(Namespace+".member");
+	}
 }

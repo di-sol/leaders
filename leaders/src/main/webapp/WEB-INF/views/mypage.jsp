@@ -128,6 +128,13 @@
 								    </c:otherwise>
 								</c:choose>
 								<input type="button" class="btn btn-outline-danger" value="충전하기" onclick="charge()">
+								
+								
+								<!-- 나중에 사용항목으로 이동.. -->
+								<!-- 지금은 사용 데이터를 받아올 수 없어서 임의로 해놓음 -->
+								<input type="button" class="btn btn-outline-warning" value="사용하기" onclick="use()">
+								
+								
 								<input type="button" class="btn btn-outline-info" value="이용내역" onclick="Usagehistory()">
 								</td>
 							</tr>
@@ -214,7 +221,6 @@
        	}
    		function deletemember(){
     		 if(confirm("관련된 모든 정보가 삭제됩니다.\n탈퇴하시겠습니까?") == true){
-    			
     			 //namespace 삭제 시 관련된 pod 같이 삭제..
     			 $.ajax({
 			    	url:'http://210.110.195.12:5000/get_pods',
@@ -240,11 +246,9 @@
 			   						
 			   					}
 			   		    	});
-							
 						}
 					}
 				});
-    			 
     			 //delete_namespace(namespace)
     			 $.ajax({
     					url:'http://210.110.195.12:5000/delete_namespace',
@@ -255,7 +259,6 @@
     						console.log(data);
     					},
     				});
-    			 
 				 $.ajax({
 						url:'<%=cp%>/deletemember',
 						type:'POST',
@@ -276,6 +279,21 @@
    		function Usagehistory(){
    			location.href = "<%=cp %>/usagehistory";
    		}
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		function use(){
+   			location.href = "<%=cp %>/use";
+   		}
+   		
+   		
+   		
     </script>
 
 </body>

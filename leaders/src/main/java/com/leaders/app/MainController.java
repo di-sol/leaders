@@ -17,7 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.leaders.dto.GroupDTO;
+import com.leaders.dto.MemberDTO;
 import com.leaders.dto.ModuleDTO;
+import com.leaders.service.GroupService;
 import com.leaders.service.MemberService;
 import com.leaders.service.ModuleService;
 
@@ -37,6 +40,10 @@ public class MainController {
 	
 	@Inject
 	ModuleService module_service;
+	
+	@Inject
+	GroupService group_service;
+	
 
 	@RequestMapping(value = "/Setting/Module", method = RequestMethod.GET)
 	public String Module(Locale locale, Model model) throws Exception {
@@ -62,12 +69,12 @@ public class MainController {
 		try {
 			if (updateNum == null || updateNum.trim().equals("")) { // modify number 가 없으면 신규등록
 				module_service.insertModule(moduleDto);
-				System.out.println("신규");
+				// System.out.println("신규");
 				
 			} else {
 				moduleDto.setModuleNum(Integer.parseInt(updateNum)); // 수정할 넘버 넣어주기
 				module_service.updateModule(moduleDto);
-				System.out.println("update num : " + updateNum);
+				// System.out.println("update num : " + updateNum);
 			}
 
 		} catch (Exception e) {
@@ -136,4 +143,82 @@ public class MainController {
 		
 	}
 	
+	
+	@RequestMapping(value = "/SystemManage/User", method = RequestMethod.GET)
+	public String User(Locale locale, Model model) throws Exception {
+		
+		ArrayList<MemberDTO> memberlist = member_service.memberlist();
+		model.addAttribute("memberlist", memberlist);
+		
+		return "/SystemManage/User";
+	}
+	
+	
+	@RequestMapping(value = "/SystemManage/Group", method = RequestMethod.GET)
+	public String Group(Locale locale, Model model) throws Exception {
+		
+		ArrayList<GroupDTO> groupList = group_service.selectAllGroup();
+		model.addAttribute("groupList", groupList);
+		
+		return "/SystemManage/Group";
+	}
+	
+	@RequestMapping(value = "/Setting/insertGroup", method = RequestMethod.POST)
+	public String insertGroup(Locale locale, Model model, HttpServletRequest request, GroupDTO groupDto) throws Exception {
+		
+		String updateNum = request.getParameter("updateNum");
+		try {
+			if (updateNum == null || updateNum.trim().equals("")) { // modify number 가 없으면 신규등록
+				group_service.insertGroup(groupDto);
+				// System.out.println("신규");
+				
+			} else {
+				groupDto.setGroupNum(Integer.parseInt(updateNum)); // 수정할 넘버 넣어주기
+				group_service.updateGroup(groupDto);
+				// System.out.println("update num : " + updateNum);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		
+		return "redirect:/SystemManage/Group";
+	}
+	
+	@RequestMapping(value = "/Setting/getGroupNamesForCheck", method = RequestMethod.POST)
+	public void getGroupNamesForCheck(Locale locale, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		
+		String groupName = request.getParameter("groupName");
+		
+		String output = group_service.selectByGroupName(groupName);
+		
+		PrintWriter out = response.getWriter();
+		out.print(output);
+		out.flush();
+		out.close();
+		
+	}
+	
+	
+	
+	@RequestMapping(value = "/Setting/getGroupDataByNum", method = RequestMethod.POST)
+	public void getGroupDataByNum(Locale locale, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		
+		String updateNum = request.getParameter("updateNum");
+
+		GroupDTO dto = group_service.selectByGroupNum(updateNum);	
+		PrintWriter out = response.getWriter();
+		
+		JSONObject output = new JSONObject();
+		output.put("groupName", dto.getGroupName());
+		output.put("groupServer", dto.getGroupServer());
+		output.put("groupPriority", dto.getGroupPriority());
+				
+		out.print(output);
+		out.flush();
+		out.close();
+
+	}
+
 }

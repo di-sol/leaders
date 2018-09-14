@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <%
 	String cp = request.getContextPath();
 	request.setCharacterEncoding("UTF-8");
@@ -35,6 +36,17 @@
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<style>
+
+.EditTool {
+		display: none; 
+		padding: 10 10 10 10; 
+		border: outset;
+	}
+	
+
+</style>
+
 </head>
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
@@ -69,9 +81,57 @@
           
           <div class="container">
             	<div class="row">
-            		<button type="button" class="btn btn-primary">User Config</button>&nbsp;
-            		<button type="button" class="btn btn-primary">Group Config</button>
+            		<!-- <button type="button" class="btn btn-primary">User Config</button>&nbsp; -->
+            		<!-- <button type="button" class="btn btn-primary">Group Config</button>&nbsp; -->
+            		<button type="button" class="btn btn-primary" onclick="opentool()">Edit Amount</button>
             	</div>
+            	
+            	
+            	
+            	
+            	<form action="<%=cp%>/updateconfig" method="POST">
+	            	<div id="EditTool" class="EditTool">
+						<div style="width: 30%;">
+							<div style="width: 90%;">
+								<label>GroupName</label>
+								<input type="text" name="groupName" style="width: 100%;" readonly/>
+							</div>
+							<div style="width: 90%; margin-top: 10px;">
+								<label>CPUTime&nbsp;(￥/Hour)</label>
+								<input type="text" name="cpuTime" style="width: 100%;" onkeypress="onlyNumber();"/>
+							</div>
+						</div>
+						<div style="width: 30%;">
+							<div style="width: 90%;">
+								<label>WallTime&nbsp;(￥/Hour)</label>
+								<input type="text" name="wallTime" style="width: 100%;" onkeypress="onlyNumber();"/>
+							</div>
+							<div style="width: 90%; margin-top: 10px;">
+								<label>GPUTime&nbsp;(￥/Hour)</label>
+								<input type="text" name="gpuTime" style="width: 100%;" onkeypress="onlyNumber();"/>
+							</div>
+						</div>
+						<div style="width: 30%;">
+							<div style="width: 90%;">
+								<label>Detail</label>
+								<input type="text" name="detail" style="width: 100%;" />
+							</div>
+							<div style="width: 90%; margin-top: 30px; display: flex;">
+								<input type="submit" value="수정" class="btn btn-primary"
+									style="width:50%;" onclick="return check()"> 
+								<input type="button" value="취소" class="btn btn-primary"
+									style="width: 50%; float: right; margin-left: 10px;"
+									onclick="cancelInput();"/>
+							</div>
+						</div>
+						<div style="width: 90%; margin-top: 30px; display: none;">
+								<input type="hidden" name="accountNum"/>
+							</div>
+					</div>
+				</form>
+				
+				
+			
 	            <div class="row">
 	            <table id="ImageManagerTable" class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%">
 						<thead class="table-success">
@@ -84,6 +144,18 @@
 				    			<th width="20%">Detail</th>
 				    		</tr>
 			    		</thead>
+			    		<tbody>
+			    			<c:forEach  var="AccountList" items="${AccountList}" >
+				    		<tr>
+				    			<td><input type="checkbox" id="accountNum" value="${AccountList.accountNum}"></td>
+				    			<td>${AccountList.groupName}</td>
+				    			<td><fmt:formatNumber value="${AccountList.cpuTime}" pattern="#,###"/></td>
+				    			<td><fmt:formatNumber value="${AccountList.gpuTime}" pattern="#,###"/></td>
+				    			<td><fmt:formatNumber value="${AccountList.wallTime}" pattern="#,###"/></td>
+				    			<td>${AccountList.detail}</td>
+				    		</tr>
+				   			</c:forEach>
+				   		</tbody>
 					</table>
 					</div>
 				</div>
@@ -150,6 +222,89 @@
 		'order': [0, 'desc'],
 		"bInfo" : false
     });
+    
+    function addComma(num) {
+		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		   return num.toString().replace(regexp, ',');
+		}
+    
+    function opentool(){
+    	if($("input[id='accountNum']:checked").val()==null){
+			 alert("지불금액을 수정할 그룹을 선택하세요.")
+		 }else if($("input[id='accountNum']:checked").length>1){
+			 alert("지불금액을 수정할 그룹을 하나만 선택하세요.")
+		 }else{
+    	
+	    	$("#EditTool").css("display","flex");
+	    	
+	    	$.ajax({
+				url:'<%=cp%>/getaccountconfig',
+				type:'POST',
+				dataType:'json',
+				data:{"accountNum":$("input[id='accountNum']:checked").val(),
+					},
+				success:function(data){
+					
+					$("input[name='accountNum']").val(data.accountNum);
+					$("input[name='groupName']").val(data.groupName);
+					/* 	
+					$("input[name='cpuTime']").val(addComma(data.cpuTime));
+					$("input[name='gpuTime']").val(addComma(data.gpuTime));
+					$("input[name='wallTime']").val(addComma(data.wallTime));
+					 */
+					$("input[name='cpuTime']").val(data.cpuTime);
+					$("input[name='gpuTime']").val(data.gpuTime);
+					$("input[name='wallTime']").val(data.wallTime);
+						
+					$("input[name='detail']").val(data.detail);
+	   			}
+			});
+		 }
+    }
+    
+    function cancelInput(){
+    	if (confirm("그룹별 지불금액설정을 취소하시겠습니까?") == true){
+    		clearInfo();
+		}else{
+			return false;
+		}
+	}
+	
+	function clearInfo() {
+		$("#EditTool").css("display","none");
+		
+		$("input[name='groupName']").val("");
+		$("input[name='cpuTime']").val("");
+		$("input[name='gpuTime']").val("");
+		$("input[name='wallTime']").val("");
+		$("input[name='detail']").val("");
+		$("input[id='accountNum']").prop("checked",false);
+	}
+	
+	function check(){
+		if($("input[name='wallTime']").val()==""){
+			 alert("해당 그룹에 적용할 사용시간당 지불 금액을 입력해주세요.");
+			 $("input[name='wallTime']").focus(); 
+			 return false;
+		}
+		if($("input[name='cpuTime']").val()==""){
+			 alert("해당 그룹에 적용할 CPU 사용시간당 지불 금액을 입력해주세요.");
+			 $("input[name='cpuTime']").focus(); 
+			 return false;
+		 }
+		if($("input[name='gpuTime']").val()==""){
+			 alert("해당 그룹에 적용할 GPU 사용시간당 지불 금액을 입력해주세요.");
+			 $("input[name='gpuTime']").focus(); 
+			 return false;
+		 }
+		
+	}
+	function onlyNumber(){
+		if ((event.keyCode < 48) || (event.keyCode > 57)) {
+			alert("숫자만 입력하세요");
+			event.returnValue = false;
+		}
+	}
     </script>
 
 </body>

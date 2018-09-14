@@ -62,4 +62,16 @@ public class BillingDAOImpl implements BillingDAO {
 			return "false";
 		}
 	}
+
+	@Override
+	public int selecttotal() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(Namespace+".selecttotal");
+	}
+
+	@Override
+	public ArrayList<BillingDTO> billinginfo(String billingUser) throws Exception {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList(Namespace+".billinginfo", billingUser);
+	}
 }

@@ -307,11 +307,12 @@
 						
 						var pod_name = data.items[i].metadata.name;
 						var namespace = data.items[i].metadata.namespace;
-						
-						htmlString = 	'<li><a href="javascript:void(0)" onclick="executePod(\'' + pod_name + '\',\'' + namespace + '\');">' + 
-										'<input type="checkbox"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;' + pod_name + '</a></li>';
-	      					
-	                	$(".depth_3").append(htmlString);
+						if (namespace != "kube-system") { // kube-system 이 아닐때만 추가 
+							htmlString = 	'<li><a href="javascript:void(0)" onclick="executePod(\'' + pod_name + '\',\'' + namespace + '\');">' + 
+							'<input type="checkbox"><i class="fa fa-laptop" aria-hidden="true"></i>&nbsp;' + pod_name + '</a></li>';
+					
+        					$(".depth_3").append(htmlString);							
+						}
 					}
 				}
 			});

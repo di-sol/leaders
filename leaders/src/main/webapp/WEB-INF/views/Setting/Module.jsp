@@ -102,7 +102,7 @@
 
 			<div class="container">
 				<div class="row">
-					<button type="button" class="btn btn-primary" onclick="opentool();">
+					<button type="button" class="btn btn-primary" onclick="insertBtnClicked();">
 						<i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Insert
 					</button>
 					&nbsp;
@@ -197,7 +197,7 @@
 							</thead>
 							<c:forEach var="moduleList" items="${moduleList}">
 								<tr>
-									<td class="checkbox_td_css"><input type="checkbox" value="${moduleList.moduleNum}" class="individual_checkbox" /></td>
+									<td class="checkbox_td_css"><input type="checkbox" value="${moduleList.moduleNum}" /></td>
 									<td>${moduleList.moduleNum}</td>
 									<td>${moduleList.model}</td>
 									<td>${moduleList.version}</td>
@@ -307,12 +307,42 @@
     });
 	/* 정영현 수정 end */
 	
-    function opentool(){
-    	$("#moduleTool").css("display","flex");
+    function insertBtnClicked(){
     	
-    	// 오늘 날짜로 맞춰줌
-		$("input[name='installDate']").val(getToday());
-		$("input[name='expirationDate']").val(getToday());
+    	
+    	var text = $("input[name='addModuleBtn']").val();
+    	
+    	if (text.includes("번")){
+    		// 수정중일때 신규
+			swal({
+			  	title: '수정중입니다. 신규등록으로 변경할까요?',
+			  	type: "info", 
+			  	showCancelButton: true,
+			  	allowEscapeKey: false,
+			  	allowOutsideClick: false,
+			}).then(function (result) {
+				
+				console.log(result);
+				if (result.dismiss === "cancel") { // 취소면 그냥 나감
+					return false;
+				}
+				
+				// 신규로 변경이니깐 정보 지워주고
+				clearInfo();
+				$("input[name='addModuleBtn']").val("등록");
+				$("#moduleTool").css("display","flex");
+				
+		    	// 오늘 날짜로 맞춰줌
+				$("input[name='installDate']").val(getToday());
+				$("input[name='expirationDate']").val(getToday());
+			});
+    	} else {
+    		// 걍 신규
+    		$("#moduleTool").css("display","flex");
+        	// 오늘 날짜로 맞춰줌
+    		$("input[name='installDate']").val(getToday());
+    		$("input[name='expirationDate']").val(getToday());
+    	}
 
     }
 
@@ -343,6 +373,7 @@
 		$("input[name='installDate']").val("");
 		$("input[name='expirationDate']").val("");
 		$("select[name='status']").val("");
+
 	}
 	
 	
@@ -537,6 +568,7 @@
 	
 	
 	function updateBtnClicked() {
+
 		var checkedCheckBox = moduleTable
 	    .rows()
 	    .nodes()
@@ -548,15 +580,43 @@
 			return;
 		}
 		
+		var set_updateNum = checkedCheckBox.eq(0).val();
+		
+		var text = $("input[name='addModuleBtn']").val();
+		if (!text.includes("번") && $("#moduleTool").is(':visible')) { // 번이라는 글자가 없으면 신규 등록 중임
+			swal({
+			  	title: '신규 등록 중입니다. ' + set_updateNum + ' 번 수정으로 변경할까요?',
+			  	type: "info", 
+			  	showCancelButton: true,
+			  	allowEscapeKey: false,
+			  	allowOutsideClick: false,
+			}).then(function (result) {
+				
+				console.log(result);
+				if (result.dismiss === "cancel") { // 취소면 그냥 나감
+					return false;
+				}
+				updateRealMethod(set_updateNum);
+			});
+		} else {
+			// 바로 수정 버튼 눌렀을때
+			updateRealMethod(set_updateNum);
+		}
+
+		
+	}
+	
+ 	function updateRealMethod (get_updateNum) {
+
 		$("#moduleTool").css("display","flex");
-		$("input[name='addModuleBtn']").val(checkedCheckBox.eq(0).val() + "번 수정");
+		$("input[name='addModuleBtn']").val(get_updateNum + "번 수정");
 
 		// input data는 ajax로 가져와서 넣어주기
 		$.ajax({
 			url:'<%=cp%>/Setting/getModuleData',
 			type:'POST',
 			dataType:'json',
-			data:{	"updateNum":checkedCheckBox.eq(0).val()},	
+			data:{	"updateNum": get_updateNum},	
 			success:function(data){
 
 				// console.log(data);
@@ -571,8 +631,7 @@
 				alert("데이터 가져오기 실패했습니다.");
    			}
 		});	
-		
-	}
+ 	}
 	
     </script>
 

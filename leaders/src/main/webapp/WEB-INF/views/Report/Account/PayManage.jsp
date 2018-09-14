@@ -81,8 +81,8 @@
 					 -->
 					<div class="form-group col-md-2">
             		User
-            		<select name='AlarmType' class="form-control">
-					  <option value='' selected>-- ALL --</option>
+            		<select name="userId" class="form-control">
+					  <option selected value="all">-- ALL --</option>
 					  <c:forEach  var="memberlist" items="${memberlist}" >
 					  	<option value='${memberlist.userId}'>${memberlist.userId}</option>
 					  </c:forEach>
@@ -90,7 +90,7 @@
 					</div>
 					<div class="form-group col-md-2">
 					<br>
-					<input type="button" class="btn btn-primary" value="Query">
+					<input type="button" class="btn btn-primary" value="Query" onclick="query()">
 					<!-- 
 					<input type="button" class="btn btn-primary" value="Pay">
 					 -->
@@ -103,31 +103,30 @@
 				    		<tr>
 				    			<th width="3%"></th>
 				    			<th width="17%">User</th>
-				    			<th width="20%">Total Pay(￥)</th>
-				    			<th width="20%">Last Pay Time</th>
+				    			<th width="20%">Pay(￥)</th>
+				    			<th width="20%">Pay Time</th>
 				    			<th width="20%">Balance(￥)</th>
 				    			<th width="20%">Detail</th>
 				    		</tr>
 			    		</thead>
-			    			<tr>
-			    				<td></td>
-			    				<td>Total</td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    				<td></td>
-			    			</tr>
-			    			<tbody>
+			    		 <tfoot>
+				            <tr>
+				            	<th class="text-center" colspan="3">Total Pay(￥)</th>
+				            	<th class="text-center" colspan="3"><p id="total" style="color:black"><fmt:formatNumber value="${total}" pattern="#,###"/></p></th>
+				            
+				            </tr>
+				        </tfoot>
+			    		<tbody>
 			    			<c:forEach  var="Billinglist" items="${Billinglist}" >
 				    		<tr>
-				    			<td>${Billinglist.billingNum}</td>
+				    			<td></td>
 				    			<td>${Billinglist.billingUser}</td>
 				    			<td><fmt:formatNumber value="${Billinglist.price}" pattern="#,###"/></td>
 				    			<td>${Billinglist.billingTime}</td>
 				    			<td><fmt:formatNumber value="${Billinglist.balance}" pattern="#,###"/></td>
 				    			<td>${Billinglist.billinghistory}</td>
 				    		</tr>
-				   		</c:forEach>
+				   			</c:forEach>
 				   		</tbody>
 					</table>
 					</div>
@@ -196,9 +195,53 @@
     
     <script type="text/javascript">
     var table = $('#PayManageTable').DataTable({
-		'order': [0, 'desc'],
+		'order': [3, 'desc'],
 		"bInfo" : false
     });
+
+	//천자리 구분기호
+		function addComma(num) {
+			  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+			   return num.toString().replace(regexp, ',');
+			}
+		
+	
+    function query(){
+    	
+    	if($("select[name='userId']").val() == "all"){
+    		location.reload();
+    	}
+    	
+    	var table = $('#PayManageTable').DataTable();
+			table.clear().draw();
+			
+		var total = 0;
+			
+    	$.ajax({
+				url:'<%=cp%>/selectbilling',
+				type:'POST',
+				dataType:'json',
+				data:{"billingUser":$("select[name='userId']").val(),
+					},
+				success:function(data){
+					for (var i=0; i<data.length; i++) {
+    					workRow = [];
+    					workRow[0] = "";
+    					workRow[1] = data[i].billinguser;
+    					workRow[2] = addComma(data[i].price);
+    					workRow[3] = data[i].billingTime;
+    					workRow[4] = addComma(data[i].balance);
+    					workRow[5] = data[i].billinghistory;
+    					
+    					table.row.add(workRow).draw(false);
+    					
+    					total = parseInt(total) + parseInt(data[i].price);
+    				}
+					$('#total').text(addComma(total));
+	   			}
+		});
+    }
+    
     </script>
 
 </body>

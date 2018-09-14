@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.leaders.mapper.AccountBillingMapper">
+ 	<select id="selectaccountconfig" resultType="com.leaders.dto.AccountBillingDTO">
+ 		<![CDATA[
+ 			SELECT *
+ 			FROM accountconfig ORDER BY accountNum
+ 		]]>
+ 	</select>
+ 	<select id="getaccountconfig" resultType="com.leaders.dto.AccountBillingDTO">
+ 		<![CDATA[
+ 			SELECT *
+ 			FROM accountconfig
+ 			WHERE accountNum = #{accountNum}
+ 		]]>
+ 	</select>
+ 	<update id="updateconfig" parameterType="com.leaders.dto.AccountBillingDTO">
+       <![CDATA[
+        UPDATE accountconfig 
+		SET cpuTime = #{cpuTime}, gpuTime = #{gpuTime}, wallTime = #{wallTime}, detail = #{detail}
+		WHERE accountNum = #{accountNum}
+       ]]>
+    </update>
+    
+    
+    
+    
+ 	
+ 	
+ 	<!-- ((cpuTIme×CPU(개수))+(gpuTime×GPU(개수))+wallTime)×사용시간 -->
+ 	<!-- 해당 유저가 속한 그룹의 WallTime, CPUTime, GPUTime 당 금액불러오기.. -->
+ 	 <select id="wallTime"  resultType="integer">
+ 		<![CDATA[
+ 			SELECT wallTime
+ 			FROM accountconfig join member
+ 			ON member.userGroup = accountconfig.groupName
+ 			Where userId = #{userId}
+ 		]]>
+ 	</select>
+ 	<select id="cpuTIme"  resultType="integer">
+ 		<![CDATA[
+ 			SELECT cpuTIme
+ 			FROM accountconfig join member
+ 			ON member.userGroup = accountconfig.groupName
+ 			Where userId = #{userId}
+ 		]]>
+ 	</select>
+ 	<select id="gpuTime"  resultType="integer">
+ 		<![CDATA[
+ 			SELECT gpuTime
+ 			FROM accountconfig join member
+ 			ON member.userGroup = accountconfig.groupName
+ 			Where userId = #{userId}
+ 		]]>
+ 	</select>
+ 	
+</mapper>

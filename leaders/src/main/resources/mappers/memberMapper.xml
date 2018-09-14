@@ -82,5 +82,12 @@
  			SELECT * FROM member order by userNum
  		]]>
  	</select>
+ 	
+ 	<select id="member" resultType="com.leaders.dto.MemberDTO">
+ 		<![CDATA[
+ 			SELECT * FROM member WHERE isAdmin is null
+ 		]]>
+ 	</select>
+ 	
 </mapper>
  

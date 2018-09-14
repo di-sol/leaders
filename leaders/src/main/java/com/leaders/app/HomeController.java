@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +19,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.leaders.dto.AccountBillingDTO;
 import com.leaders.dto.BillingDTO;
 import com.leaders.dto.LoginVO;
 import com.leaders.dto.MemberDTO;
+import com.leaders.service.AccountBillingService;
 import com.leaders.service.BillingService;
 import com.leaders.service.MemberService;
 import com.mysql.fabric.Server;
@@ -41,6 +44,8 @@ public class HomeController {
 	MemberService member_service;
 	@Inject
 	BillingService billing_service;
+	@Inject
+	AccountBillingService accountbilling_service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
@@ -240,6 +245,23 @@ public class HomeController {
 	}
 	
 	
+	@RequestMapping(value = "/use", method = RequestMethod.GET)
+	public String use(HttpSession session, Model model) throws Exception {
+		String userId = (String)session.getAttribute("userid");
+		
+		int wallTime = accountbilling_service.wallTime(userId);
+		model.addAttribute("wallTime", wallTime);
+		int cpuTIme = accountbilling_service.cpuTIme(userId);
+		model.addAttribute("cpuTIme", cpuTIme);
+		int gpuTime = accountbilling_service.gpuTime(userId);
+		model.addAttribute("gpuTime", gpuTime);
+		
+		
+		return "use";
+	}
+	
+	
+	
 	@RequestMapping(value = "/usagehistory", method = RequestMethod.GET)
 	public String usagehistory(HttpSession session, Model model) throws Exception {
 		String billingUser = (String)session.getAttribute("userid");
@@ -248,6 +270,42 @@ public class HomeController {
 		model.addAttribute("Billinglist", Billinglist);
 		
 		return "usagehistory";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/selectbilling", method = RequestMethod.POST)
+	public void selectbilling(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {		
+		String billingUser = request.getParameter("billingUser");
+		
+		ArrayList<BillingDTO> Billinglist = billing_service.billinginfo(billingUser);
+		 
+		JSONArray arr = new JSONArray();
+		for (int i = 0; i < Billinglist.size(); i++) {
+			int billingNum = Billinglist.get(i).getBillingNum();
+			String billinguser = Billinglist.get(i).getBillingUser();
+			String billingTime = Billinglist.get(i).getBillingTime();
+			String billinghistory = Billinglist.get(i).getBillinghistory();
+			String price = Billinglist.get(i).getPrice();
+			String balance = Billinglist.get(i).getBalance();
+			
+			JSONObject obj = new JSONObject();
+			obj.put("billingNum", billingNum);
+			obj.put("billinguser", billinguser);
+			obj.put("billingTime", billingTime);
+			obj.put("billinghistory", billinghistory);
+			obj.put("price", price);
+			obj.put("balance", balance);
+
+			arr.put(obj);
+		}
+
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print(arr);
+		out.flush();
+		out.close();	
 	}
 	
 	
@@ -323,8 +381,71 @@ public class HomeController {
 	@RequestMapping(value = "/Report/Account/AccountConfig", method = RequestMethod.GET)
 	public String AccountConfig(Locale locale, Model model) throws Exception {
 		
+		ArrayList<AccountBillingDTO> AccountList = accountbilling_service.selectaccountconfig();
+		model.addAttribute("AccountList", AccountList);
+		
 		return "/Report/Account/AccountConfig";
 	}
+	
+	@RequestMapping(value = "/getaccountconfig", method = RequestMethod.POST)
+	public void getaccountconfig(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		String accountNum = request.getParameter("accountNum");
+
+		AccountBillingDTO dto = null;
+		try {
+			dto = accountbilling_service.getaccountconfig(accountNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		JSONObject outputObject = new JSONObject();
+		outputObject.put("accountNum", dto.getAccountNum());
+		outputObject.put("groupName", dto.getGroupName());
+		outputObject.put("cpuTime", dto.getCpuTime());
+		outputObject.put("gpuTime", dto.getGpuTime());
+		outputObject.put("wallTime", dto.getWallTime());
+		outputObject.put("detail", dto.getDetail());
+
+		response.setCharacterEncoding("UTF-8");
+
+		PrintWriter out = response.getWriter();
+		out.print(outputObject);
+		out.flush();
+		out.close();
+	}
+	
+	/*
+	@RequestMapping(value = "/updateconfig", method = RequestMethod.POST)
+	public void updateconfig(HttpServletRequest request, HttpServletResponse response,AccountBillingDTO dto) throws Exception {
+
+		String accountNum = request.getParameter("accountNum");
+		String cpuTime = request.getParameter("cpuTime");
+		String gpuTime = request.getParameter("gpuTime");
+		String wallTime = request.getParameter("wallTime");
+		String detail = request.getParameter("detail");
+		
+		accountbilling_service.updateconfig(dto);
+		
+
+		PrintWriter out = response.getWriter();
+		
+		String output = null;
+		 
+		out.print(output);
+		out.flush();
+		out.close();
+	}
+	*/
+	
+	@RequestMapping(value = "/updateconfig", method = RequestMethod.POST)
+	public String updateconfig(AccountBillingDTO dto,HttpSession session, Model model) throws Exception {
+		
+		accountbilling_service.updateconfig(dto);
+		
+		return "redirect:/Report/Account/AccountConfig";
+	}
+	
 	@RequestMapping(value = "/Report/Account/BillReport", method = RequestMethod.GET)
 	public String BillReport(Locale locale, Model model) throws Exception {
 		
@@ -333,11 +454,14 @@ public class HomeController {
 	@RequestMapping(value = "/Report/Account/PayManage", method = RequestMethod.GET)
 	public String PayManage(Locale locale, Model model) throws Exception {
 		
-		ArrayList<MemberDTO> memberlist = member_service.memberlist();
+		ArrayList<MemberDTO> memberlist = member_service.member();
 		model.addAttribute("memberlist", memberlist);
 		
 		ArrayList<BillingDTO> Billinglist = billing_service.selectbilling();
 		model.addAttribute("Billinglist", Billinglist);
+		
+		int total = billing_service.selecttotal();
+		model.addAttribute("total", total);
 		
 		return "/Report/Account/PayManage";
 	}
@@ -347,22 +471,6 @@ public class HomeController {
 		return "/Report/ClusterReport";
 	}
 	
-	
-	@RequestMapping(value = "/SystemManage/User", method = RequestMethod.GET)
-	public String User(Locale locale, Model model) throws Exception {
-		
-		ArrayList<MemberDTO> memberlist = member_service.memberlist();
-		model.addAttribute("memberlist", memberlist);
-		
-		return "/SystemManage/User";
-	}
-	
-	
-	@RequestMapping(value = "/SystemManage/Group", method = RequestMethod.GET)
-	public String Group(Locale locale, Model model) throws Exception {
-		
-		return "/SystemManage/Group";
-	}
 	@RequestMapping(value = "/SystemManage/Queue", method = RequestMethod.GET)
 	public String Queue(Locale locale, Model model) throws Exception {
 		
